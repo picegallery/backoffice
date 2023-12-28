@@ -1,11 +1,7 @@
-import { FC } from "react"
+import { FC } from 'react'
 
 const DashboardIndex: FC = () => {
-  return (
-    <main>
-      DashboardIndex
-    </main>
-  )
+  return <main>DashboardIndex</main>
 }
 
 export default DashboardIndex

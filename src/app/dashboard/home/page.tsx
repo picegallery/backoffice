@@ -1,11 +1,7 @@
-import { FC } from "react"
+import { FC } from 'react'
 
 const DashboardHome: FC = () => {
-  return (
-    <main>
-      DashboardHome
-    </main>
-  )
+  return <main>DashboardHome</main>
 }
 
 export default DashboardHome
