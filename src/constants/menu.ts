@@ -1,38 +1,38 @@
 export const menuList = [
   {
-    path: 'home',
+    path: '/dashboard/home',
     title: 'Dashboard',
     icon: 'dashboard'
   },
   {
-    path: 'artist',
+    path: '/dashboard/artist',
     title: 'Artist',
     icon: 'person',
     items: [
       {
-        path: 'list',
+        path: '/list',
         title: 'List',
         icon: 'list'
       },
       {
-        path: 'new',
+        path: '/new',
         title: 'New',
         icon: 'add'
       }
     ]
   },
   {
-    path: 'exhibition',
+    path: 'dashboard/exhibition',
     title: 'Exhibition',
     icon: 'cropOriginal',
     items: [
       {
-        path: 'list',
+        path: '/list',
         title: 'List',
         icon: 'list'
       },
       {
-        path: 'new',
+        path: '/new',
         title: 'New',
         icon: 'add'
       }

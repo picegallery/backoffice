@@ -1,9 +1,14 @@
 import { FC, ReactNode } from 'react'
-import { MainStyled } from './Main.styled'
+import { MainStyled, SpacingToolbarStyled } from './Main.styled'
 
 type MainProps = { children: ReactNode }
 const Main: FC<MainProps> = ({ children }) => {
-  return <MainStyled>{children}</MainStyled>
+  return (
+    <MainStyled>
+      <SpacingToolbarStyled />
+      {children}
+    </MainStyled>
+  )
 }
 
 export default Main

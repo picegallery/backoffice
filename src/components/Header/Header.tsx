@@ -6,11 +6,14 @@ import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import { HeaderStyled } from './Header.styled'
-import Drawer from './../Drawer/Drawer'
-import { useAuth } from '@/hooks'
 
 interface AppBarProps extends MuiAppBarProps {
   open: boolean
+}
+interface HeaderProps {
+  open: boolean
+  handleDrawerOpen: () => void
+  logged: boolean
 }
 
 const drawerWidth = 240
@@ -33,18 +36,7 @@ const AppBar = styled(MuiAppBar, {
   })
 }))
 
-const Header: FC = () => {
-  const { logged } = useAuth()
-  const [open, setOpen] = useState(false)
-
-  const handleDrawerOpen = () => {
-    setOpen(true)
-  }
-
-  const handleDrawerClose = () => {
-    setOpen(false)
-  }
-
+const Header: FC<HeaderProps> = ({ open, handleDrawerOpen, logged }) => {
   return (
     <Fragment>
       <AppBar position='fixed' sx={{ zIndex: 2000 }} open={open}>
@@ -74,7 +66,6 @@ const Header: FC = () => {
           </HeaderStyled>
         </Container>
       </AppBar>
-      {logged && <Drawer open={open} onClose={handleDrawerClose} />}
     </Fragment>
   )
 }
