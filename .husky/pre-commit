@@ -1,17 +1,11 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
- 
-echo '🏗️👷 Styling your project before committing👷‍♂️🏗️'
-echo 'please be patient, this may take a while...'
- 
-# Check ESLint Standards
-yarn lint ||
-(
-    echo '🔨❌ Yoo, you have a problem in your code. Check linter 🔨❌
-          Run yarn lint, add changes and try commit again.';
-    false;
-)
- 
-echo '🎉 No error found: committing this now.... ✨🚀🏄‍♂️🍻'
- 
-npx lint-staged
+# For making changes to OSMO configuration or other "not UI" parts we don't
+# really need to run all of the following steps. For advanced users allow them
+# to more quickly commit without delay. This only skips if the variable is
+# defined, otherwise will pass on.
+
+if [[ -n "$SKIP_PRECOMMIT" ]]; then
+    exit;
+fi
+
+npm run lint
+# npm run test

@@ -1,5 +1,5 @@
 'use client'
-import { Theme, styled } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import { BaseCSSProperties } from '@mui/material/styles/createMixins'
 
 export const MainStyled = styled('main')(({ theme }) => ({
