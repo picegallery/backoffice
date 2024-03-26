@@ -9,6 +9,7 @@ import List from '@mui/material/List'
 import { Collapse, IconButton } from '@mui/material'
 import { menuList } from '@/constants'
 import Icon from '../Icon/Icon'
+import { useRouter } from 'next/navigation'
 
 interface DrawerProps {
   open: boolean
@@ -64,6 +65,7 @@ const DrawerStyled = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== '
 const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
   const theme = useTheme()
   const [menuItemsOpen, setMenuItemsOpen] = useState<Array<string>>([])
+  const router = useRouter()
 
   const onClickOnSubItem = (key: string) => {
     if (menuItemsOpen.find((mi: string) => key === mi) !== undefined) {
@@ -74,7 +76,6 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
   }
 
   const renderItem = ({ title, path, openItem, onClick, key, icon, isSubItem = false, hasSubItem = false }) => {
-    console.log('hasSubItem', hasSubItem)
     return (
       <ListItemButton
         onClick={() => onClick(path)}
@@ -95,6 +96,7 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
       </ListItemButton>
     )
   }
+
   return (
     <DrawerStyled variant='permanent' open={open}>
       <DrawerHeaderStyled>
@@ -128,7 +130,9 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
                           title: subItem.title,
                           path: subItem.path,
                           openItem,
-                          onClick: () => {},
+                          onClick: () => {
+                            router.push(`${path}${subItem.path}`)
+                          },
                           key: `${subItem.path}-${subItemIndex}`,
                           isSubItem: true,
                           icon: subItem.icon
@@ -145,7 +149,9 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
                 {renderItem({
                   title,
                   path,
-                  onClick: () => {},
+                  onClick: () => {
+                    router.push(path)
+                  },
                   key: `item-${title}-${index}`,
                   openItem: false,
                   icon
