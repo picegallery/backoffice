@@ -7,3 +7,4 @@ export const HeaderStyled = styled(Toolbar)`
     background-color: ${theme.palette.primary.main}
   `}
 `
+export const TitleStyled = styled('span')(() => ({}))

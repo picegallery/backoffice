@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 const DashboardIndex: FC = () => {
-  return <main>DashboardIndex</main>
+  return <div>DashboardIndex</div>
 }
 
 export default DashboardIndex

@@ -5,7 +5,7 @@ type ButtonProps = PropsWithChildren & ButtonMUIProps
 
 const Button: FC<ButtonProps> = ({ children, ...rest }) => {
   return (
-    <ButtonMUI {...rest} variant='outlined'>
+    <ButtonMUI {...rest} variant='outlined' data-testid='button-component'>
       {children}
     </ButtonMUI>
   )

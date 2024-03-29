@@ -22,7 +22,7 @@ export const menuList = [
     ]
   },
   {
-    path: 'dashboard/exhibition',
+    path: '/dashboard/exhibition',
     title: 'Exhibition',
     icon: 'cropOriginal',
     items: [

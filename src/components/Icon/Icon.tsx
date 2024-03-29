@@ -10,8 +10,12 @@ import {
   List,
   CropOriginal
 } from '@mui/icons-material'
-
-const IconList = {
+import { SvgIconTypeMap } from '@mui/material'
+import { OverridableComponent } from '@mui/material/OverridableComponent'
+type IconListType = {
+  [key: string]: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string }
+}
+const IconList: IconListType = {
   inbox: Inbox,
   chevronRight: ChevronRight,
   chevronLeft: ChevronLeft,
@@ -23,10 +27,17 @@ const IconList = {
   list: List,
   cropOriginal: CropOriginal
 }
-
-const Icon = ({ iconName, ...props }) => {
+type IconProps = {
+  iconName: keyof IconListType
+}
+const Icon = ({ iconName, ...props }: IconProps) => {
   const Component = IconList[iconName]
-  return <Component {...props} />
+  if (!Component) return null
+  return (
+    <div data-testid={`icon-component-${iconName}`}>
+      <Component {...props} />
+    </div>
+  )
 }
 
 export default Icon

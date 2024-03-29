@@ -1,5 +1,8 @@
-import * as React from 'react'
-import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import { Meta, StoryObj } from '@storybook/react'
+import { within } from '@storybook/testing-library'
+import { expect } from '@storybook/jest'
+import DataTable from './DataTable'
+import { GridColDef } from '@mui/x-data-grid'
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -33,22 +36,29 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 }
 ]
 
-const DataTable = () => {
-  return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 }
-          }
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
-    </div>
-  )
+const meta: Meta<typeof DataTable> = {
+  title: 'DataTable',
+  argTypes: {
+    rows: { type: 'string' },
+    columns: { type: 'string' },
+    pageSize: { type: 'number' },
+    pageNumber: { type: 'number' }
+  },
+  args: {
+    rows,
+    columns,
+    pageSize: 5,
+    pageNumber: 0
+  },
+  component: DataTable
 }
 
-export default DataTable
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    expect(canvas.getByTestId('datatable-component')).toBeDefined()
+  }
+}

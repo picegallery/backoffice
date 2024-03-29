@@ -7,9 +7,10 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import List from '@mui/material/List'
 import { Collapse, IconButton } from '@mui/material'
-import { menuList } from '@/constants'
+import { URLS, menuList } from '@/constants'
 import Icon from '../Icon/Icon'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 interface DrawerProps {
   open: boolean
@@ -100,6 +101,7 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
   return (
     <DrawerStyled variant='permanent' open={open}>
       <DrawerHeaderStyled>
+        <Image src={`${URLS.awsBucket}/logo.png`} alt='Pice Gallery Logo' objectFit='contain' width={68} height={86} />
         <IconButton onClick={onClose}>
           <Icon iconName={theme.direction === 'rtl' ? 'chevronRight' : 'chevronLeft'} />
         </IconButton>
