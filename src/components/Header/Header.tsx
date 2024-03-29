@@ -1,11 +1,12 @@
 'use client'
-import { FC, Fragment, useState } from 'react'
+import { FC, Fragment } from 'react'
 import { styled } from '@mui/material/styles'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
-import { HeaderStyled } from './Header.styled'
+import { HeaderStyled, TitleStyled } from './Header.styled'
+import { useCommon } from '@/hooks'
 
 interface AppBarProps extends MuiAppBarProps {
   open: boolean
@@ -37,6 +38,7 @@ const AppBar = styled(MuiAppBar, {
 }))
 
 const Header: FC<HeaderProps> = ({ open, handleDrawerOpen, logged }) => {
+  const { currentTitle } = useCommon()
   return (
     <Fragment>
       <AppBar position='fixed' sx={{ zIndex: 2000 }} open={open}>
@@ -56,13 +58,7 @@ const Header: FC<HeaderProps> = ({ open, handleDrawerOpen, logged }) => {
                 <MenuIcon />
               </IconButton>
             )}
-            {/* <Image
-              src={`${URLS.awsBucket}/logo-branco.png`}
-              width={160}
-              alt='Pice Gallery Logo'
-              height={100}
-              objectFit='contain'
-            /> */}
+            <TitleStyled>{currentTitle}</TitleStyled>
           </HeaderStyled>
         </Container>
       </AppBar>

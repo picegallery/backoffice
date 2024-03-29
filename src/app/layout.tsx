@@ -4,12 +4,17 @@ import { Inter } from 'next/font/google'
 import { FC, ReactNode } from 'react'
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry'
 import Layout from '@/components/Layout/Layout'
+import dynamic from 'next/dynamic'
 
 const inter = Inter({ subsets: ['latin'] })
 
+const ReduxProvider = dynamic(() => import('@/store/reduxProvider'), {
+  ssr: false
+})
+
 export const metadata: Metadata = {
-  title: 'Pice Gallery Back Office',
-  description: 'Pice Gallery Back Office'
+  title: 'Pice Gallery Backoffice',
+  description: 'Pice Gallery Backoffice'
 }
 
 type RootLayoutProps = {
@@ -19,11 +24,13 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <AppRouterCacheProvider>
-          <ThemeRegistry>
-            <Layout>{children}</Layout>
-          </ThemeRegistry>
-        </AppRouterCacheProvider>
+        <ReduxProvider>
+          <AppRouterCacheProvider>
+            <ThemeRegistry>
+              <Layout>{children}</Layout>
+            </ThemeRegistry>
+          </AppRouterCacheProvider>
+        </ReduxProvider>
       </body>
     </html>
   )

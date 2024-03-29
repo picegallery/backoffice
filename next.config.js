@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [process.env.AWS_BUCKET]
+    domains: [process.env.NEXT_PUBLIC_AWS_BUCKET]
   }
 }
 
