@@ -1,6 +1,6 @@
 'use client'
-import { useAppSelector } from '@/store'
-import { setCurrentTitle } from '@/store/slices'
+import { useAppSelector } from '@/effects/store'
+import { setCurrentTitle } from '@/effects/store/slices'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 

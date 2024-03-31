@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux'
 import { persistReducer } from 'redux-persist'
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
-import { authReducer } from '@/store/slices/authSlice'
+import { authReducer } from '@/effects/store/slices/authSlice'
 import { commonReducer } from './slices'
 
 const createNoopStorage = () => {

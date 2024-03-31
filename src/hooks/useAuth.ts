@@ -1,5 +1,5 @@
 'use client'
-import { useAppSelector } from '@/store'
+import { useAppSelector } from '@/effects/store'
 export const useAuth = () => {
   const { logged } = useAppSelector((state) => state.auth)
 

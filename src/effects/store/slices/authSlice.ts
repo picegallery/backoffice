@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-
-export interface AuthState {
-  logged: boolean
-}
+import { AuthState } from '@/types'
 
 const initialState: AuthState = {
-  logged: true
+  logged: true,
+  errorMessage: null,
+  list: [],
+  loading: false,
+  refreshToken: null,
+  token: null
 }
 
 export const authSlice = createSlice({
