@@ -1,4 +1,4 @@
-import { Artist } from '@/types/artist'
+import { Artist } from '@/types/artist/artist'
 
 export const artists: Artist[] = [
   {

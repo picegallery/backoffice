@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const ReduxProvider = dynamic(() => import('@/store/reduxProvider'), {
+const ReduxProvider = dynamic(() => import('@/effects/store/reduxProvider'), {
   ssr: false
 })
 
