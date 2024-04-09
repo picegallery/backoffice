@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
-import { Inter } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 import { FC, ReactNode } from 'react'
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry'
 import Layout from '@/components/Layout/Layout'
 import dynamic from 'next/dynamic'
 
-const inter = Inter({ subsets: ['latin'] })
+const montserrat = Montserrat({ subsets: ['latin'] })
 
 const ReduxProvider = dynamic(() => import('@/effects/store/reduxProvider'), {
   ssr: false
@@ -23,7 +23,7 @@ type RootLayoutProps = {
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={montserrat.className}>
         <ReduxProvider>
           <AppRouterCacheProvider>
             <ThemeRegistry>
