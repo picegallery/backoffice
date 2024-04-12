@@ -45,14 +45,15 @@ const DrawerHeaderStyled = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  ...theme.mixins.toolbar
-}))
+  ...theme.mixins.toolbar,
+  }))
 
 const DrawerStyled = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
   width: drawerWidth,
   flexShrink: 0,
   whiteSpace: 'nowrap',
   boxSizing: 'border-box',
+  color: '#006E7A',
   ...(open && {
     ...openedMixin(theme),
     '& .MuiDrawer-paper': openedMixin(theme)
@@ -81,7 +82,7 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
       <ListItemButton
         onClick={() => onClick(path)}
         key={key}
-        sx={{ pl: isSubItem ? 4 : 2, minHeight: 48, justifyContent: open ? 'initial' : 'center' }}
+        sx={{ pl: isSubItem ? 4 : 2, minHeight: 48, justifyContent: open ? 'initial' : 'center', color: theme.palette.primary.main }}
       >
         <ListItemIcon
           sx={{
@@ -92,7 +93,7 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
         >
           <Icon iconName={icon} />
         </ListItemIcon>
-        <ListItemText primary={title} sx={{ opacity: open ? 1 : 0 }} />
+        <ListItemText primary={title} sx={{ opacity: open ? 1 : 0, color: theme.palette.primary.main }} />
         {open && hasSubItem && <Icon iconName={openItem ? 'expandLess' : 'expandMore'} />}
       </ListItemButton>
     )
