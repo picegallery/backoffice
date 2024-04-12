@@ -1,6 +1,6 @@
 import { Montserrat } from 'next/font/google'
 import { createTheme } from '@mui/material/styles'
-import { grey } from '@mui/material/colors'
+import { blueGrey } from '@mui/material/colors'
 
 const montserrat = Montserrat({
   weight: ['300', '400', '500', '700'],
@@ -20,7 +20,7 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: brandColors.primary
+      main: '#006E7A',
     }
   },
   typography: {
@@ -33,7 +33,7 @@ const theme = createTheme({
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: grey[200]
+          backgroundColor: blueGrey [200]
         }
       }
     },
