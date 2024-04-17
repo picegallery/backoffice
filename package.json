@@ -16,7 +16,9 @@
     "version-commit": "lerna version --changelog-preset conventionalcommits --force-publish --no-commit-hooks --include-merged-tags",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}"
+    "chromatic": "npx chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}",
+    "container:build": "docker build -t backoffice .",
+    "container:run": "docker run -p 3000:3000 backoffice"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
