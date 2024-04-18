@@ -88,7 +88,8 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
           sx={{
             minWidth: 0,
             mr: open ? 3 : 'auto',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            color: theme.palette.primary.main,
           }}
         >
           <Icon iconName={icon} />
@@ -148,7 +149,7 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
             )
           } else {
             return (
-              <ListItem key={`${title}-${index}`} disablePadding sx={{ display: 'block' }}>
+              <ListItem key={`${title}-${index}`} disablePadding sx={{ display: 'block', color: theme.palette.primary.main}}>
                 {renderItem({
                   title,
                   path,
