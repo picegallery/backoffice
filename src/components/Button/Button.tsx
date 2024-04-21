@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react'
 import { Button as ButtonMUI, ButtonProps as ButtonMUIProps } from '@mui/material'
 
-type ButtonProps = PropsWithChildren & ButtonMUIProps
+export type ButtonProps = PropsWithChildren<ButtonMUIProps>
 
 const Button: FC<ButtonProps> = ({ children, ...rest }) => {
   return (
@@ -9,7 +9,7 @@ const Button: FC<ButtonProps> = ({ children, ...rest }) => {
     {...rest} variant='contained'
       sx={{
         backgroundColor: '#006E7A',
-        color: '#006E7A', 
+        color: '#FFFFFF', 
         borderRadius: '4px',
         padding: '6px 16px', 
         '&:hover': {
