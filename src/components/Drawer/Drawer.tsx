@@ -17,6 +17,17 @@ interface DrawerProps {
   onClose: () => void
 }
 
+interface DrawerItemProps {
+  title: string
+  path: string
+  openItem: boolean
+  onClick: (path: string) => void
+  key: string
+  icon: string
+  isSubItem?: boolean
+  hasSubItem?: boolean
+}
+
 const drawerWidth = 240
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -77,7 +88,16 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
     }
   }
 
-  const renderItem = ({ title, path, openItem, onClick, key, icon, isSubItem = false, hasSubItem = false }) => {
+  const renderItem = ({
+    title,
+    path,
+    openItem,
+    onClick,
+    key,
+    icon,
+    isSubItem = false,
+    hasSubItem = false
+  }: DrawerItemProps) => {
     return (
       <ListItemButton
         onClick={() => onClick(path)}

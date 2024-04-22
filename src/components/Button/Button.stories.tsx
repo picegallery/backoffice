@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/testing-library'
 import { expect } from '@storybook/jest'
-import Button, { ButtonProps } from './Button'
+import Button from './Button'
 
 const meta: Meta<typeof Button> = {
   title: 'Button',
