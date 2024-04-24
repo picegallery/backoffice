@@ -1,15 +1,29 @@
 import { styled } from '@mui/material/styles'
-import Button from '@mui/material/Button';
+import { Button as ButtonMUI, ButtonProps as ButtonMUIProps, createTheme } from '@mui/material';
 
-export const StyledButton = styled(Button)(({ theme }) => ({
+const StyledButton = styled(ButtonMUI)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.primary.contrastText,
-  borderRadius: '4px',
-  padding: '8px 16px',
+  borderRadius: theme.shape.borderRadius || '4px',
+  padding: `${theme.spacing(2)}px ${theme.spacing(4)}px`,
   transition: 'background-color 0.3s ease',
 
   '&:hover': {
-    backgroundColor: theme.palette.secondary.main, // Altere para a cor secundária definida no tema
+    backgroundColor: theme.palette.secondary.main,
   },
 
-}))
+}));
+
+type ButtonProps = ButtonMUIProps;
+
+const CustomButton: React.FC<ButtonProps> = ({ children, ...rest }) => {
+  const theme = createTheme();
+
+  return (
+    <StyledButton {...rest}>
+      {children}
+    </StyledButton>
+  );
+};
+
+export default CustomButton;

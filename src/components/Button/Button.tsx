@@ -1,22 +1,20 @@
 import { FC, PropsWithChildren } from 'react'
 import { Button as ButtonMUI, ButtonProps as ButtonMUIProps } from '@mui/material'
+import { createTheme } from '@mui/material/styles'
 
 export type ButtonProps = PropsWithChildren<ButtonMUIProps>
 
 const Button: FC<ButtonProps> = ({ children, ...rest }) => {
+  const theme = createTheme();
+  
   return (
     <ButtonMUI 
     {...rest} variant='contained'
-      sx={{
-        backgroundColor: '#006E7A',
-        color: '#FFFFFF', 
-        borderRadius: '4px',
-        padding: '6px 16px', 
-        '&:hover': {
-        backgroundColor: '#6FC6BC',
-                  },
-        }}
-        data-testid='button-component'>
+      style={{
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+      }}
+      >
       {children}
     </ButtonMUI>
   )
