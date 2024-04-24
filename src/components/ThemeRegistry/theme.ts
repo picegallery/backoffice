@@ -27,6 +27,7 @@ const theme = createTheme({
       main: brandColors.secondary
     }
   },
+},
   typography: {
     fontFamily: montserrat.style.fontFamily
   },
