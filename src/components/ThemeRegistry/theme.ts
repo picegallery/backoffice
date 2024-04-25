@@ -21,8 +21,12 @@ const theme = createTheme({
     mode: 'light',
     primary: {
       main: '#006E7A',
-    }
+      contrastText: '#FFFFFF',
+    },
+  secondary: {
+    main: '#6FC6BC',
   },
+},
   typography: {
     fontFamily: montserrat.style.fontFamily
   },
@@ -33,7 +37,13 @@ const theme = createTheme({
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: blueGrey [200]
+          backgroundColor: blueGrey [200],
+          spacing: 4, 
+  sizes: {
+    medium: 16,
+    large: 24,
+  },
+  borderRadius: 4
         }
       }
     },
@@ -41,7 +51,7 @@ const theme = createTheme({
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.severity === 'info' && {
-            backgroundColor: '#60a5fa'
+            backgroundColor: '#006E7A'
           })
         })
       }

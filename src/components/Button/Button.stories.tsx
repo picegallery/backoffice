@@ -1,17 +1,18 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/testing-library'
 import { expect } from '@storybook/jest'
-import Button from './Button'
+import Button, { ButtonProps } from './Button'
+import { StyledButton } from './Button.styled'
 
 const meta: Meta<typeof Button> = {
   title: 'Button',
+  component: Button,
   argTypes: {
     children: { type: 'string' }
   },
   args: {
-    children: <>Button Content</>
-  },
-  component: Button
+    children: 'Button Content'
+  }
 }
 
 export default meta
@@ -23,4 +24,15 @@ export const Default: Story = {
     expect(canvas.getByTestId('button-component')).toBeDefined()
     expect(canvas.getByRole('button')).toBeDefined()
   }
+}
+
+const styledMeta: Meta<typeof StyledButton> = {
+  title: 'StyledButton',
+  component: StyledButton,
+  argTypes: {
+    children: { type: 'string' },
+  },
+  args: {
+    children: 'Styled Button',
+  },
 }
