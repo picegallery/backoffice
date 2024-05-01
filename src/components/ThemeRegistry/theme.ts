@@ -1,6 +1,6 @@
 import { Montserrat } from 'next/font/google'
 import { createTheme } from '@mui/material/styles'
-import { blueGrey } from '@mui/material/colors'
+import { grey } from '@mui/material/colors'
 
 const montserrat = Montserrat({
   weight: ['300', '400', '500', '700'],
@@ -20,13 +20,13 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#006E7A',
-      contrastText: '#FFFFFF',
+      main: brandColors.primary,
+      contrastText: '#FFFFFF'
     },
-  secondary: {
-    main: '#6FC6BC',
+    secondary: {
+      main: brandColors.secondary
+    }
   },
-},
   typography: {
     fontFamily: montserrat.style.fontFamily
   },
@@ -37,13 +37,13 @@ const theme = createTheme({
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: blueGrey [200],
-          spacing: 4, 
-  sizes: {
-    medium: 16,
-    large: 24,
-  },
-  borderRadius: 4
+          backgroundColor: grey[200],
+          spacing: 4,
+          sizes: {
+            medium: 16,
+            large: 24
+          },
+          borderRadius: 4
         }
       }
     },
@@ -51,7 +51,7 @@ const theme = createTheme({
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.severity === 'info' && {
-            backgroundColor: '#006E7A'
+            backgroundColor: brandColors.primary
           })
         })
       }

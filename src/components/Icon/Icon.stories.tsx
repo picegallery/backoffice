@@ -13,7 +13,10 @@ const iconList = [
   'person',
   'add',
   'list',
-  'cropOriginal'
+  'cropOriginal',
+  'remove',
+  'edit',
+  'delete'
 ]
 
 const meta: Meta<typeof Icon> = {

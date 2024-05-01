@@ -13,26 +13,30 @@ interface FormInputControllerProps<TFieldsType extends FieldValues> {
 interface InputTextProps<TFieldsType extends FieldValues> extends FormInputControllerProps<TFieldsType> {
   label: string
   type?: HTMLInputTypeAttribute
+  disabled?: boolean
 }
 
 const InputText = <TFieldsType extends FieldValues>({
   name,
   control,
   label,
-  type = 'text'
+  type = 'text',
+  disabled = false
 }: InputTextProps<TFieldsType>) => {
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field: { onChange, value }, fieldState: { error } }) => (
+      disabled={disabled}
+      render={({ field, fieldState: { error } }) => (
         <TextField
           helperText={error ? error.message : null}
           size='small'
+          disabled={field.disabled}
           error={!!error}
           type={type}
-          onChange={onChange}
-          value={value}
+          onChange={field.onChange}
+          value={field.value}
           fullWidth
           label={label}
           variant='outlined'
