@@ -1,14 +1,14 @@
 import { FC, PropsWithChildren } from 'react'
-import { Button as ButtonMUI, ButtonProps as ButtonMUIProps } from '@mui/material'
+import { ButtonProps as ButtonMUIProps } from '@mui/material'
+import { createTheme } from '@mui/material/styles'
+import { ButtonStyled } from './Button.styled'
 
-type ButtonProps = PropsWithChildren & ButtonMUIProps
+export type ButtonProps = PropsWithChildren<ButtonMUIProps> & {
+  icon?: boolean
+}
 
 const Button: FC<ButtonProps> = ({ children, ...rest }) => {
-  return (
-    <ButtonMUI {...rest} variant='outlined' data-testid='button-component'>
-      {children}
-    </ButtonMUI>
-  )
+  return <ButtonStyled {...rest}>{children}</ButtonStyled>
 }
 
 export default Button

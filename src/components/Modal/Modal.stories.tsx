@@ -1,17 +1,17 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/testing-library'
 import { expect } from '@storybook/jest'
-import Button from './Button'
+import Modal from './Modal'
 
-const meta: Meta<typeof Button> = {
-  title: 'Button',
-  component: Button,
+const meta: Meta<typeof Modal> = {
+  title: 'Modal',
   argTypes: {
     children: { type: 'string' }
   },
   args: {
-    children: 'Button Content'
-  }
+    children: <>Modal Content</>
+  },
+  component: Modal
 }
 
 export default meta
@@ -20,7 +20,6 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    expect(canvas.getByTestId('button-component')).toBeDefined()
-    expect(canvas.getByRole('button')).toBeDefined()
+    expect(canvas.getByTestId('modal-component')).toBeDefined()
   }
 }

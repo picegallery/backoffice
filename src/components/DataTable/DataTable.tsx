@@ -29,7 +29,6 @@ const DataTable = <T extends Record<string, any>>({
           }
         }}
         pageSizeOptions={pageSizeOptions}
-        checkboxSelection
       />
     </div>
   )
