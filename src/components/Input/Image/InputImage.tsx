@@ -62,6 +62,7 @@ const InputImage = <TFieldsType extends FieldValues>({
             <input
               ref={(e) => {
                 ref(e)
+                // @ts-ignore
                 fileInputRef.current = e // Assign to ref
               }}
               onChange={(e) => {
