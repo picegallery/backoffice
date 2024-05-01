@@ -1,6 +1,6 @@
 import { HTMLInputTypeAttribute } from 'react'
 import { Control, Controller, FieldError, FieldValues, Path, RegisterOptions } from 'react-hook-form'
-import { TextField } from '@mui/material'
+import { Select, MenuItem, FormControl, FormHelperText, InputLabel } from '@mui/material'
 
 interface FormInputControllerProps<TFieldsType extends FieldValues> {
   name: Path<TFieldsType>
@@ -8,37 +8,60 @@ interface FormInputControllerProps<TFieldsType extends FieldValues> {
   rules?: RegisterOptions
   error?: FieldError
   control: Control<TFieldsType>
+  value?: any
 }
 
+export type Item = {
+  label: string
+  value: string | number
+}
 interface InputSelectProps<TFieldsType extends FieldValues> extends FormInputControllerProps<TFieldsType> {
   label: string
-  type?: HTMLInputTypeAttribute
+  helperText?: string
+  items: Item[]
+  multiple?: boolean
 }
 
 const InputSelect = <TFieldsType extends FieldValues>({
   name,
   control,
   label,
-  type = 'text'
+  helperText,
+  items = [],
+  multiple = false
 }: InputSelectProps<TFieldsType>) => {
   return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field: { onChange, value }, fieldState: { error } }) => (
-        <TextField
-          helperText={error ? error.message : null}
-          size='small'
-          error={!!error}
-          type={type}
-          onChange={onChange}
-          value={value}
-          fullWidth
-          label={label}
-          variant='outlined'
-        />
-      )}
-    />
+    <FormControl fullWidth>
+      <InputLabel id={name}>{label}</InputLabel>
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <Select
+            labelId={name}
+            label={label}
+            multiple={multiple}
+            {...field}
+            value={field.value || []}
+            renderValue={(selected) =>
+              selected.map((value) => items.find((item) => item.value === value)?.label).join(', ')
+            }
+            onChange={(event) => {
+              const value = event.target.value
+              // On autofill we get a stringified value.
+              field.onChange(typeof value === 'string' ? value.split(',') : value)
+            }}
+          >
+            {items.map((item, itemIndex) => (
+              <MenuItem value={item.value} key={itemIndex}>
+                {item.label}
+              </MenuItem>
+            ))}
+          </Select>
+        )}
+      />
+      <FormHelperText>{helperText}</FormHelperText>
+    </FormControl>
   )
 }
 

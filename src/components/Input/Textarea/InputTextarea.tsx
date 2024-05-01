@@ -20,7 +20,7 @@ const InputTextarea = <TFieldsType extends FieldValues>({
   name,
   control,
   label,
-  minRows = 5
+  minRows = 10
 }: InputTextareaProps<TFieldsType>) => {
   return (
     <InputTextareaStyled>

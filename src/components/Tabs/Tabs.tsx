@@ -13,7 +13,7 @@ export type TabItem = {
 }
 type TabProps = { items: TabItem[]; ariaLabel?: string }
 const Tabs: FC<TabProps> = ({ items, ariaLabel }) => {
-  const [currentTab, setCurrentTab] = useState('1')
+  const [currentTab, setCurrentTab] = useState('0')
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setCurrentTab(newValue)
