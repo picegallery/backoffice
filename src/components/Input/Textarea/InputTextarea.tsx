@@ -14,21 +14,24 @@ interface FormInputControllerProps<TFieldsType extends FieldValues> {
 interface InputTextareaProps<TFieldsType extends FieldValues> extends FormInputControllerProps<TFieldsType> {
   label: string
   type?: HTMLInputTypeAttribute
+  disabled?: boolean
 }
 
 const InputTextarea = <TFieldsType extends FieldValues>({
   name,
   control,
   label,
-  minRows = 10
+  minRows = 10,
+  disabled = false
 }: InputTextareaProps<TFieldsType>) => {
   return (
     <InputTextareaStyled>
       <Controller
         name={name}
         control={control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => (
-          <Textarea aria-label={label} minRows={minRows} placeholder={label} name={name} />
+        disabled={disabled}
+        render={({ field, fieldState: { error } }) => (
+          <Textarea aria-label={label} minRows={minRows} placeholder={label} name={name} disabled={field.disabled} />
         )}
       />
     </InputTextareaStyled>

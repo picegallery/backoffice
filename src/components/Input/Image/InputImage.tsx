@@ -18,6 +18,7 @@ interface InputImageProps<TFieldsType extends FieldValues> extends FormInputCont
   type?: HTMLInputTypeAttribute
   id?: string
   helperText?: string
+  disabled?: boolean
 }
 
 const InputImage = <TFieldsType extends FieldValues>({
@@ -25,7 +26,8 @@ const InputImage = <TFieldsType extends FieldValues>({
   control,
   label = 'Upload Photo',
   id = 'upload-image',
-  helperText = 'Choose a photo to upload'
+  helperText = 'Choose a photo to upload',
+  disabled = false
 }: InputImageProps<TFieldsType>) => {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null)
@@ -54,6 +56,7 @@ const InputImage = <TFieldsType extends FieldValues>({
       <Controller
         name={name}
         control={control}
+        disabled={disabled}
         render={({ field: { ref, onChange, onBlur, name } }) => (
           <>
             <input
@@ -71,7 +74,7 @@ const InputImage = <TFieldsType extends FieldValues>({
               accept='image/*'
               style={{ display: 'none' }} // Hide the actual input
             />
-            <Button variant='contained' component='span' onClick={handleButtonClick}>
+            <Button variant='contained' component='span' onClick={handleButtonClick} disabled={disabled}>
               {label}
             </Button>
           </>

@@ -1,5 +1,5 @@
 'use client'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 import { Grid } from '@mui/material'
@@ -18,10 +18,12 @@ const ArtistForm: FC<ArtistFormProps> = ({}) => {
   const { handleSubmit } = useForm()
   const { push } = useRouter()
 
+  const [viewMode, setViewMode] = useState(!isNew)
+
   const tabsForm: TabItem[] = [
     {
       label: 'Profile',
-      content: <ArtistProfileSection />
+      content: <ArtistProfileSection viewMode={viewMode} />
     },
     {
       label: 'Artworks',
@@ -36,12 +38,14 @@ const ArtistForm: FC<ArtistFormProps> = ({}) => {
   ]
 
   const onClickCancel = (viewMode: boolean) => {
+    setViewMode(!viewMode)
     isNew && push('/dashboard/artist/list')
   }
 
   const onClickEdit = (viewMode: boolean) => {
-    console.log('isViewMode', viewMode)
+    setViewMode(!viewMode)
   }
+
   return (
     <div data-testid='dashboard-artist-form'>
       <form onSubmit={handleSubmit((data) => console.log('data', data))}>

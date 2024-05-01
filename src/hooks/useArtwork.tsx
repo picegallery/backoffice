@@ -3,13 +3,22 @@
 import { GridColDef } from '@mui/x-data-grid'
 import { artists } from '@/mocks/data/artists'
 import { useParams } from 'next/navigation'
+import TableActions from '@/components/TableActions/TableActions'
+import { Artist } from '@/types'
 
-export const useArtist = () => {
+export const useArtwork = () => {
   const { id } = useParams()
 
   const isNew = id === 'new'
 
-  const columns: GridColDef[] = [
+  const columns: GridColDef<Artist>[] = [
+    {
+      field: 'actions',
+      type: 'custom',
+      headerName: '',
+      width: 120,
+      renderCell: (params) => <TableActions viewPath={`/dashboard/artist/${params.row.id}`} onClickDelete={() => {}} />
+    },
     { field: 'id', headerName: 'ID', width: 70 },
     {
       field: 'fullName',

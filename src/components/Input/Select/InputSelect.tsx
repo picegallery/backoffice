@@ -20,6 +20,7 @@ interface InputSelectProps<TFieldsType extends FieldValues> extends FormInputCon
   helperText?: string
   items: Item[]
   multiple?: boolean
+  disabled?: boolean
 }
 
 const InputSelect = <TFieldsType extends FieldValues>({
@@ -28,7 +29,8 @@ const InputSelect = <TFieldsType extends FieldValues>({
   label,
   helperText,
   items = [],
-  multiple = false
+  multiple = false,
+  disabled = false
 }: InputSelectProps<TFieldsType>) => {
   return (
     <FormControl fullWidth>
@@ -36,6 +38,7 @@ const InputSelect = <TFieldsType extends FieldValues>({
       <Controller
         name={name}
         control={control}
+        disabled={disabled}
         render={({ field }) => (
           <Select
             labelId={name}

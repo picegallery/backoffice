@@ -8,7 +8,11 @@ import {
   Person,
   Add,
   List,
-  CropOriginal
+  CropOriginal,
+  Edit,
+  Remove,
+  DeleteForever,
+  RemoveRedEye
 } from '@mui/icons-material'
 import { SvgIconTypeMap } from '@mui/material'
 import { OverridableComponent } from '@mui/material/OverridableComponent'
@@ -25,7 +29,11 @@ const IconList: IconListType = {
   person: Person,
   add: Add,
   list: List,
-  cropOriginal: CropOriginal
+  cropOriginal: CropOriginal,
+  remove: Remove,
+  edit: Edit,
+  delete: DeleteForever,
+  eye: RemoveRedEye
 }
 type IconProps = {
   iconName: keyof IconListType
