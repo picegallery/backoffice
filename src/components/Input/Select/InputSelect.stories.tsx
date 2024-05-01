@@ -8,8 +8,7 @@ const meta: Meta<typeof InputSelect> = {
   title: 'Input/Select',
   args: {
     label: 'name',
-    name: 'name',
-    type: 'text'
+    name: 'name'
   },
   decorators: [
     (Story) => (
