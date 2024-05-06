@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react'
 import Widget, { WidgetProps } from './Widget'
 import MessageIcon from '@mui/icons-material/Message'
+import WorkIcon from '@mui/icons-material/Work'
 
 type WidgetArgs = WidgetProps & { icon?: JSX.Element };
 
@@ -22,7 +23,24 @@ const Template: StoryFn<WidgetArgs> = (args) => <Widget {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'Widget Title',
+  title: 'Messages',
+  value: 200,
+  text: '3.46% Since last month',
+  icon: <MessageIcon fontSize="large" />,
+};
+
+export const CurrentJobs = Template.bind({});
+CurrentJobs.args = {
+  title: 'Current Jobs',
+  value: 160,
+  text: '-2,87% since last week',
+  icon: <WorkIcon fontSize="large" />,
+};
+
+export const WidgetTemplate = Template.bind({});
+WidgetTemplate.args = {
+  title: 'Template Title',
+  value: 100,
   text: 'Some text here',
-  icon: <MessageIcon fontSize="large" />
-}
+  icon: <MessageIcon fontSize="large" />,
+};
