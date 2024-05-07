@@ -1,39 +1,38 @@
-import { WidgetStyled, WidgetContent, WidgetIconContainerStyled, WidgetContentTextStyled, WidgetText } from './Widget.styled'
+import Avatar from '@mui/material/Avatar'
+import Icon from '@mui/material/Icon'
+import { WidgetStyled, WidgetContent, WidgetIconContainerStyled, WidgetContentTextStyled, WidgetText } from './Widget.styled';
+import { IconPosition } from './Widget.styled'
+import { WidgetProps } from './Widget.styled'
 
-export enum IconPosition {
-  LEFT = 'left',
-  RIGHT = 'right',
-}
-interface WidgetProps {
-colors?: { primary: string };
-  percentFillValue?: number;
-    title: string;
-    value: number;
-    text: string;
-    icon?: JSX.Element;
-    iconPosition?: IconPosition;
-  }
-
-  const Widget: React.FC<WidgetProps> = ({ colors, percentFillValue, title, value, text, icon, iconPosition = IconPosition.LEFT }) => {
-    return (
-      <WidgetStyled colors={{ primary: '#ffffff' }} percentFillValue={50} >
-        <WidgetContent>
-        <WidgetIconContainerStyled iconPosition={iconPosition}> 
-            {icon}
+const Widget: React.FC<WidgetProps> = ({ colors, percentFillValue, title, value, text, icon, iconPosition }) => {
+  return (
+    <WidgetStyled colors={{ primary: '#ffffff' }} percentFillValue={50} >
+      <WidgetContent>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <WidgetIconContainerStyled iconPosition={iconPosition ?? IconPosition.LEFT}>
+            <Avatar sx={{ width: 80, height: 80, bgcolor: 'DodgerBlue' }}>
+              <Icon sx={{ fontSize: 50, color: 'white' }}>{icon}</Icon>
+            </Avatar>
           </WidgetIconContainerStyled>
           <WidgetContentTextStyled>
-          <div>
-              <WidgetText variant="h4">{value}</WidgetText> 
-            </div>
-            <div>
-              <WidgetText variant="body1">{title}</WidgetText> 
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <WidgetText variant="h4">{value}</WidgetText>
+              <WidgetText variant="body1">{title}</WidgetText>
               <WidgetText variant="body2">{text}</WidgetText>
             </div>
           </WidgetContentTextStyled>
-        </WidgetContent>
-      </WidgetStyled>
-    );
-  };
-  
-  export default Widget
-  export type { WidgetProps }
+          {iconPosition === IconPosition.RIGHT && (
+            <WidgetIconContainerStyled iconPosition={iconPosition}>
+              <Avatar sx={{ width: 80, height: 80, bgcolor: 'DodgerBlue' }}>
+                <Icon sx={{ fontSize: 50, color: 'white' }}>{icon}</Icon>
+              </Avatar>
+            </WidgetIconContainerStyled>
+          )}
+        </div>
+      </WidgetContent>
+    </WidgetStyled>
+  );
+};
+
+export default Widget
+export type { WidgetProps }

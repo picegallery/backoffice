@@ -1,10 +1,18 @@
 import { Meta, StoryFn } from '@storybook/react'
-import Widget, { WidgetProps } from './Widget'
+import Widget from './Widget'
 import MessageIcon from '@mui/icons-material/Message'
 import WorkIcon from '@mui/icons-material/Work'
-import { IconPosition } from './Widget'
+import { IconPosition } from './Widget.styled'
 
-type WidgetArgs = WidgetProps & { icon?: JSX.Element, iconPosition?: IconPosition }
+type WidgetArgs = {
+  colors?: { primary: string };
+  percentFillValue?: number;
+  title: string;
+  value: number;
+  text: string;
+  icon?: JSX.Element;
+  iconPosition?: IconPosition;
+}
 
 const meta: Meta = {
   title: 'Widget',
@@ -14,7 +22,7 @@ const meta: Meta = {
     percentFillValue: { control: 'number' }, 
     title: { control: 'text' }, 
     value: { control: 'number' }, 
-    text: { control: 'text' },
+    text: { control: 'text' }, // Corrigido para aceitar uma string
     iconPosition: { control: { type: 'inline-radio', options: [IconPosition.LEFT, IconPosition.RIGHT] } },
   },
 };
@@ -48,4 +56,4 @@ WidgetTemplate.args = {
   text: 'Some text here',
   icon: <MessageIcon fontSize="large" />,
   iconPosition: IconPosition.LEFT,
-};
+}

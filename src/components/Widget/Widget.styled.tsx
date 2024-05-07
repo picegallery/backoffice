@@ -1,13 +1,27 @@
 import { Paper, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { IconPosition } from './Widget'
 
-interface WidgetStyledProps {
+export enum IconPosition {
+  LEFT = 'left',
+  RIGHT = 'right',
+}
+
+export type WidgetStyledProps = {
   colors: {
     primary: string;
-};
-percentFillValue: number,
-};
+  };
+  percentFillValue: number;
+}
+
+export type WidgetProps = {
+  colors?: { primary: string };
+  percentFillValue?: number;
+  title: string;
+  value: number;
+  text: string;
+  icon?: JSX.Element;
+  iconPosition?: IconPosition;
+}
 
 export const WidgetStyled = styled(Paper)<WidgetStyledProps>(({ theme, colors, percentFillValue }) => ({
   display: 'flex',
@@ -35,9 +49,10 @@ export const WidgetContent = styled(Typography)(({ theme }) => ({
 
 
 export const WidgetIconContainerStyled = styled('div')<{ iconPosition: IconPosition }>(({ theme, iconPosition }) => ({
-  textAlign: 'center',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: iconPosition === IconPosition.LEFT ? 'flex-start' : 'flex-end',
   marginRight: theme.spacing(1),
-  flexDirection: iconPosition === IconPosition.LEFT ? 'column' : 'column-reverse',
 }));
 
 export const WidgetContentTextStyled = styled('div')(({ theme }) => ({
