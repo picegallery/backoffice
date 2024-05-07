@@ -1,7 +1,9 @@
-import { WidgetStyled, WidgetContent, IconContainer, WidgetText } from './Widget.styled'
-import MessageIcon from '@mui/icons-material/Message'
-import WorkIcon from '@mui/icons-material/Work'
+import { WidgetStyled, WidgetContent, WidgetIconContainerStyled, WidgetContentTextStyled, WidgetText } from './Widget.styled'
 
+export enum IconPosition {
+  LEFT = 'left',
+  RIGHT = 'right',
+}
 interface WidgetProps {
 colors?: { primary: string };
   percentFillValue?: number;
@@ -9,29 +11,29 @@ colors?: { primary: string };
     value: number;
     text: string;
     icon?: JSX.Element;
-  };
+    iconPosition?: IconPosition;
+  }
 
-const Widget: React.FC<WidgetProps> = ({ colors, percentFillValue, title, value, text }) => {
-  return (
-    <WidgetStyled colors={{ primary: '#ffffff' }} percentFillValue={50} >
-      <WidgetContent>
-      <IconContainer>
-          {title === 'Messages' && <MessageIcon fontSize="large" sx={{ color: '#fff' }} />}
-          {title === 'Current Jobs' && <WorkIcon fontSize="large" sx={{ color: '#fff' }} />}
-        </IconContainer>
-        <div style={{ textAlign: 'center' }}> 
-        <div>
-            <WidgetText variant="h4">{value}</WidgetText> 
-          </div>
+  const Widget: React.FC<WidgetProps> = ({ colors, percentFillValue, title, value, text, icon, iconPosition = IconPosition.LEFT }) => {
+    return (
+      <WidgetStyled colors={{ primary: '#ffffff' }} percentFillValue={50} >
+        <WidgetContent>
+        <WidgetIconContainerStyled iconPosition={iconPosition}> 
+            {icon}
+          </WidgetIconContainerStyled>
+          <WidgetContentTextStyled>
           <div>
-            <WidgetText variant="body1">{title}</WidgetText> 
-            <WidgetText variant="body2">{text}</WidgetText>
-          </div>
-        </div>
-      </WidgetContent>
-    </WidgetStyled>
-  );
-};
-
-export default Widget
-export type { WidgetProps }
+              <WidgetText variant="h4">{value}</WidgetText> 
+            </div>
+            <div>
+              <WidgetText variant="body1">{title}</WidgetText> 
+              <WidgetText variant="body2">{text}</WidgetText>
+            </div>
+          </WidgetContentTextStyled>
+        </WidgetContent>
+      </WidgetStyled>
+    );
+  };
+  
+  export default Widget
+  export type { WidgetProps }

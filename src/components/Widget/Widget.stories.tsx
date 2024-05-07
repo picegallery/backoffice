@@ -2,8 +2,9 @@ import { Meta, StoryFn } from '@storybook/react'
 import Widget, { WidgetProps } from './Widget'
 import MessageIcon from '@mui/icons-material/Message'
 import WorkIcon from '@mui/icons-material/Work'
+import { IconPosition } from './Widget'
 
-type WidgetArgs = WidgetProps & { icon?: JSX.Element };
+type WidgetArgs = WidgetProps & { icon?: JSX.Element, iconPosition?: IconPosition }
 
 const meta: Meta = {
   title: 'Widget',
@@ -14,6 +15,7 @@ const meta: Meta = {
     title: { control: 'text' }, 
     value: { control: 'number' }, 
     text: { control: 'text' },
+    iconPosition: { control: { type: 'inline-radio', options: [IconPosition.LEFT, IconPosition.RIGHT] } },
   },
 };
 
@@ -27,6 +29,7 @@ Default.args = {
   value: 200,
   text: '3.46% Since last month',
   icon: <MessageIcon fontSize="large" />,
+  iconPosition: IconPosition.LEFT,
 };
 
 export const CurrentJobs = Template.bind({});
@@ -35,12 +38,14 @@ CurrentJobs.args = {
   value: 160,
   text: '-2,87% since last week',
   icon: <WorkIcon fontSize="large" />,
+  iconPosition: IconPosition.LEFT,
 };
 
 export const WidgetTemplate = Template.bind({});
 WidgetTemplate.args = {
   title: 'Template Title',
-  value: 100,
+  value: 100, 
   text: 'Some text here',
   icon: <MessageIcon fontSize="large" />,
+  iconPosition: IconPosition.LEFT,
 };

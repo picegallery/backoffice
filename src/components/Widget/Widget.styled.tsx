@@ -1,5 +1,6 @@
 import { Paper, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { IconPosition } from './Widget'
 
 interface WidgetStyledProps {
   colors: {
@@ -29,15 +30,20 @@ export const WidgetContent = styled(Typography)(({ theme }) => ({
   flexDirection: 'column',
   color: theme.palette.common.white,
   textAlign: 'center',
-  alignItems: 'center',
+  alignItems: 'flex-center',
 }));
 
-export const IconContainer = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+
+export const WidgetIconContainerStyled = styled('div')<{ iconPosition: IconPosition }>(({ theme, iconPosition }) => ({
+  textAlign: 'center',
   marginRight: theme.spacing(1),
+  flexDirection: iconPosition === IconPosition.LEFT ? 'column' : 'column-reverse',
+}));
+
+export const WidgetContentTextStyled = styled('div')(({ theme }) => ({
+  textAlign: 'center',
 }));
 
 export const WidgetText = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(1),
-}))
+}));
