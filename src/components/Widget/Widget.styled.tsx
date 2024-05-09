@@ -1,5 +1,6 @@
 import { Paper, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import Avatar from '@mui/material/Avatar'
 
 export enum IconPosition {
   LEFT = 'left',
@@ -62,3 +63,9 @@ export const WidgetContentTextStyled = styled('div')(({ theme }) => ({
 export const WidgetText = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(1),
 }));
+
+export const WidgetAvatarStyled = styled(Avatar)<{ iconColor: string }>`
+  width: 80px;
+  height: 80px;
+  background-color: ${({ iconColor }) => iconColor};
+  `;

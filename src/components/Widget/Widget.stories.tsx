@@ -22,7 +22,7 @@ const meta: Meta = {
     percentFillValue: { control: 'number' }, 
     title: { control: 'text' }, 
     value: { control: 'number' }, 
-    text: { control: 'text' }, // Corrigido para aceitar uma string
+    text: { control: 'text' },
     iconPosition: { control: { type: 'inline-radio', options: [IconPosition.LEFT, IconPosition.RIGHT] } },
   },
 };

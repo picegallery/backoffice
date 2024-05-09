@@ -1,8 +1,7 @@
-import Avatar from '@mui/material/Avatar'
-import Icon from '@mui/material/Icon'
-import { WidgetStyled, WidgetContent, WidgetIconContainerStyled, WidgetContentTextStyled, WidgetText } from './Widget.styled';
+import { WidgetStyled, WidgetContent, WidgetIconContainerStyled, WidgetContentTextStyled, WidgetText, WidgetAvatarStyled } from './Widget.styled'
 import { IconPosition } from './Widget.styled'
 import { WidgetProps } from './Widget.styled'
+import Icon from '@mui/material/Icon'
 
 const Widget: React.FC<WidgetProps> = ({ colors, percentFillValue, title, value, text, icon, iconPosition }) => {
   return (
@@ -10,9 +9,9 @@ const Widget: React.FC<WidgetProps> = ({ colors, percentFillValue, title, value,
       <WidgetContent>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <WidgetIconContainerStyled iconPosition={iconPosition ?? IconPosition.LEFT}>
-            <Avatar sx={{ width: 80, height: 80, bgcolor: 'DodgerBlue' }}>
+            <WidgetAvatarStyled iconColor="DodgerBlue">
               <Icon sx={{ fontSize: 50, color: 'white' }}>{icon}</Icon>
-            </Avatar>
+            </WidgetAvatarStyled>
           </WidgetIconContainerStyled>
           <WidgetContentTextStyled>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -23,9 +22,9 @@ const Widget: React.FC<WidgetProps> = ({ colors, percentFillValue, title, value,
           </WidgetContentTextStyled>
           {iconPosition === IconPosition.RIGHT && (
             <WidgetIconContainerStyled iconPosition={iconPosition}>
-              <Avatar sx={{ width: 80, height: 80, bgcolor: 'DodgerBlue' }}>
+              <WidgetAvatarStyled iconColor="DodgerBlue">
                 <Icon sx={{ fontSize: 50, color: 'white' }}>{icon}</Icon>
-              </Avatar>
+              </WidgetAvatarStyled>
             </WidgetIconContainerStyled>
           )}
         </div>
