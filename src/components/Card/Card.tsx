@@ -1,7 +1,9 @@
 import { FC, PropsWithChildren } from 'react'
 import { CardStyled } from './Card.styled'
 
-const Card: FC<PropsWithChildren> = ({ children }) => {
+interface CardProps {}
+
+const Card: FC<PropsWithChildren<CardProps>> = ({ children }) => {
   return <CardStyled data-testid='card-component'>{children}</CardStyled>
 }
 
