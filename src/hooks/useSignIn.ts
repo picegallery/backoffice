@@ -2,15 +2,15 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { LoginForm } from '@/types'
+import { SignInForm } from '@/types'
 
-export const useLogin = () => {
+export const useSignIn = () => {
   const schema = yup.object().shape({
     email: yup.string().required('Name is a required field'),
     password: yup.string().required('Password is a required field')
   })
 
-  const { control, handleSubmit } = useForm<LoginForm>({
+  const { control, handleSubmit } = useForm<SignInForm>({
     defaultValues: {
       email: '',
       password: ''
@@ -19,7 +19,7 @@ export const useLogin = () => {
     resolver: yupResolver(schema)
   })
 
-  const onSubmit: SubmitHandler<LoginForm> = (data) => {
+  const onSubmit: SubmitHandler<SignInForm> = (data) => {
     console.log('data', data)
   }
 

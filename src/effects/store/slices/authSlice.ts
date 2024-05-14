@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { AuthState } from '@/types'
 
 const initialState: AuthState = {
-  logged: true,
+  logged: false,
   errorMessage: null,
   list: [],
   loading: false,
