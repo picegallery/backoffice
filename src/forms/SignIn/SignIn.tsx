@@ -1,10 +1,8 @@
 'use client'
-import Card from '@/components/Card/Card'
-import { Grid, Typography } from '@/components'
 import { FC } from 'react'
-import InputText from '@/components/Input/Text/InputText'
+import { Grid, Typography, Button, InputText, Logo } from '@/components'
 import { useSignIn } from '@/hooks'
-import Button from '@/components/Button/Button'
+import { LinkStyled } from '@/components/Pages/SignIn/SignIn.styled'
 
 const SignInForm: FC = () => {
   const { control, handleSubmit, onSubmit } = useSignIn()
@@ -12,8 +10,13 @@ const SignInForm: FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container padding={3} rowSpacing={3}>
+        <Grid item xs={12} marginTop={5}>
+          <Logo />
+        </Grid>
         <Grid item xs={12}>
-          <Typography variant='h4'>Sign in</Typography>
+          <Typography variant='h4' textAlign={'center'}>
+            Sign in
+          </Typography>
         </Grid>
 
         <Grid item xs={12}>
@@ -26,8 +29,14 @@ const SignInForm: FC = () => {
 
         <Grid item xs={12}>
           <Button fullWidth type='submit'>
-            Submit
+            Sign in
           </Button>
+        </Grid>
+
+        <Grid item xs={12} marginTop={5} justifyContent={'center'} display={'flex'}>
+          <LinkStyled href='/sign-up' passHref>
+            New here? Sign up now
+          </LinkStyled>
         </Grid>
       </Grid>
     </form>

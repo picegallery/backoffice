@@ -4,15 +4,10 @@ import { SignInPageStyled, FormContainerStyled, BackgroundImageStyled } from './
 const SignInPage = () => {
   return (
     <SignInPageStyled container>
-      <FormContainerStyled item xs={12} md={6}>
+      <FormContainerStyled item xs={12} md={6} justifyContent={'center'}>
         <SignInForm />
       </FormContainerStyled>
-      <BackgroundImageStyled
-        item
-        xs={12}
-        md={6}
-        style={{ backgroundImage: `url(/assets/signin.png)` }}
-      ></BackgroundImageStyled>
+      <BackgroundImageStyled item xs={12} md={6} />
     </SignInPageStyled>
   )
 }
