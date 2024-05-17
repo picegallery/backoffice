@@ -1,5 +1,5 @@
 'use client'
-import { useForm } from 'react-hook-form'
+import { set, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { SignInFormType } from '@/types'
@@ -17,14 +17,20 @@ export const useSignIn = () => {
       .matches(/[@$!%*?&#]/, 'Password must contain at least one special character')
   })
 
-  const { control, handleSubmit } = useForm<SignInFormType>({
+  const {
+    control,
+    handleSubmit,
+    setError,
+    formState: { errors },
+    watch
+  } = useForm<SignInFormType>({
     defaultValues: {
-      email: '',
-      password: ''
+      email: 'test12346@example.com',
+      password: 'TPassword123@'
     },
     mode: 'onSubmit',
     resolver: yupResolver(schema)
   })
 
-  return { control, handleSubmit }
+  return { control, handleSubmit, setError, errors, watch }
 }

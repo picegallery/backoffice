@@ -14,6 +14,8 @@ export const FormContainerStyled = styled(Grid)`
 export const BackgroundImageStyled = styled(Grid)`
   background-size: cover;
   background-image: url(/assets/signin.png);
+  background-position-y: bottom;
+  background-position-x: center;
 `
 
 export const LinkStyled = styled(Link)`

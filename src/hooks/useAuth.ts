@@ -1,7 +1,7 @@
 'use client'
 import { useAppSelector } from '@/effects/store'
 export const useAuth = () => {
-  const { logged } = useAppSelector((state) => state.auth)
+  const { logged, errorMessage, loading, token } = useAppSelector((state) => state.auth)
 
-  return { logged }
+  return { logged, errorMessage, loading, token }
 }
