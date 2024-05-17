@@ -27,14 +27,19 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     setOpen(false)
   }
 
-  return (
+  const renderLoggedLayout = (
     <RootStyled data-testid='layout-component'>
       <DynamicHeader open={open} handleDrawerOpen={handleDrawerOpen} logged={logged} />
-      {logged && <Drawer open={open} onClose={handleDrawerClose} />}
+      <Drawer open={open} onClose={handleDrawerClose} />
       <Main>{children}</Main>
       <Footer />
     </RootStyled>
   )
+
+  const renderLogoutLayout = <RootStyled data-testid='layout-component'>{children}</RootStyled>
+
+  console.log('logged', logged)
+  return <>{logged ? renderLoggedLayout : renderLogoutLayout}</>
 }
 
 export default Layout

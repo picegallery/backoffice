@@ -10,9 +10,7 @@ export interface AuthState extends DefaultValuesState<any> {
 }
 
 export interface PayloadSignIn {
-  user: any
   token: string
-  refreshToken: string
 }
 
 export interface SignIn {

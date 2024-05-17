@@ -12,11 +12,6 @@ const ReduxProvider = dynamic(() => import('@/effects/store/reduxProvider'), {
   ssr: false
 })
 
-export const metadata: Metadata = {
-  title: 'Pice Gallery Backoffice',
-  description: 'Pice Gallery Backoffice'
-}
-
 type RootLayoutProps = {
   children: ReactNode
 }
