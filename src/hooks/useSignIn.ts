@@ -1,13 +1,10 @@
 'use client'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { SignInForm } from '@/types'
-import { postSignInAction } from '@/effects/actions'
-import { useAppDispatch } from '@/effects/store'
+import { SignInFormType } from '@/types'
 
 export const useSignIn = () => {
-  const dispatch = useAppDispatch()
   const schema = yup.object().shape({
     email: yup.string().required('Name is a required field'),
     password: yup
@@ -20,7 +17,7 @@ export const useSignIn = () => {
       .matches(/[@$!%*?&#]/, 'Password must contain at least one special character')
   })
 
-  const { control, handleSubmit } = useForm<SignInForm>({
+  const { control, handleSubmit } = useForm<SignInFormType>({
     defaultValues: {
       email: '',
       password: ''
@@ -29,9 +26,5 @@ export const useSignIn = () => {
     resolver: yupResolver(schema)
   })
 
-  const onSubmit: SubmitHandler<SignInForm> = (data) => {
-    dispatch(postSignInAction(data))
-  }
-
-  return { control, handleSubmit, onSubmit }
+  return { control, handleSubmit }
 }

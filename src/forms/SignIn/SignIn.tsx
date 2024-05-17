@@ -3,10 +3,18 @@ import { FC } from 'react'
 import { Grid, Typography, Button, InputText, Logo } from '@/components'
 import { useSignIn } from '@/hooks'
 import { LinkStyled } from '@/components/Pages/SignIn/SignIn.styled'
+import { SubmitHandler } from 'react-hook-form'
+import { postSignInAction } from '@/effects/actions'
+import { useAppDispatch } from '@/effects/store'
+import { SignInFormType } from '@/types'
 
 const SignInForm: FC = () => {
-  const { control, handleSubmit, onSubmit } = useSignIn()
+  const dispatch = useAppDispatch()
 
+  const { control, handleSubmit } = useSignIn()
+  const onSubmit: SubmitHandler<SignInFormType> = (data) => {
+    dispatch(postSignInAction(data))
+  }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container padding={3} rowSpacing={3}>

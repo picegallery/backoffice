@@ -1,4 +1,4 @@
-export type SignInForm = {
+export type SignInFormType = {
   email: string
   password: string
 }
