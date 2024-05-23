@@ -11,6 +11,9 @@ import { URLS, menuList } from '@/constants'
 import Icon from '../Icon/Icon'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import MenuIcon from '@mui/icons-material/Menu'
+import HomeIcon from '@mui/icons-material/Home'
+import PeopleIcon from '@mui/icons-material/People'
 
 interface DrawerProps {
   open: boolean
@@ -57,7 +60,7 @@ const DrawerHeaderStyled = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
-  }))
+}))
 
 const DrawerStyled = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
   width: drawerWidth,
@@ -180,7 +183,7 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
                   openItem: false,
                   icon
                 })}
-              </ListItem>
+        </ListItem>
             )
           }
         })}
