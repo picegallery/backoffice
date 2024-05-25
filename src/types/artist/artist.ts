@@ -1,6 +1,7 @@
+import { User } from '../user'
+
 export type Artist = {
   id: string
   artisticName: string
-  firstName: string
-  lastName: string
+  user: User
 }
