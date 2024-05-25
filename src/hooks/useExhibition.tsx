@@ -1,10 +1,9 @@
 'use client'
 
 import { GridColDef } from '@mui/x-data-grid'
-import { exhibitions } from '@/mocks/data/exhibitions'
 import { useParams } from 'next/navigation'
 import TableActions from '@/components/TableActions/TableActions'
-import { Artist, Exhibition } from '@/types'
+import { Exhibition } from '@/types'
 import { useAppSelector } from '@/effects/store'
 
 export const useExhibition = () => {
