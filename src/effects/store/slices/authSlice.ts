@@ -4,7 +4,7 @@ import { postSignInAction } from '@/effects/actions'
 import { handleErrorMessages } from '@/utils/handleErrorMessages'
 
 const initialState: AuthState = {
-  logged: false,
+  logged: true,
   errorMessage: null,
   list: [],
   loading: false,

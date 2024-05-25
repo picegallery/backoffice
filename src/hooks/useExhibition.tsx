@@ -1,34 +1,40 @@
 'use client'
 
 import { GridColDef } from '@mui/x-data-grid'
-import { artists } from '@/mocks/data/artists'
 import { useParams } from 'next/navigation'
 import TableActions from '@/components/TableActions/TableActions'
-import { Artist } from '@/types'
+import { Exhibition } from '@/types'
+import { useAppSelector } from '@/effects/store'
 
 export const useExhibition = () => {
   const { id } = useParams()
-
+  const { list: exhibitions } = useAppSelector((state) => state.exhibition)
   const isNew = id === 'new'
 
-  const columns: GridColDef<Artist>[] = [
+  const columns: GridColDef<Exhibition>[] = [
     {
       field: 'actions',
       type: 'custom',
       headerName: '',
       width: 120,
-      renderCell: (params) => <TableActions viewPath={`/dashboard/artist/${params.row.id}`} onClickDelete={() => {}} />
+      renderCell: (params) => (
+        <TableActions viewPath={`/dashboard/exhibition/${params.row.id}`} onClickDelete={() => {}} />
+      )
     },
-    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'exhibitionType', headerName: 'Mode', width: 100 },
+    { field: 'title', headerName: 'Title', width: 200 },
     {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`
+      field: 'startDate',
+      headerName: 'Start Date',
+      width: 200,
+      valueFormatter: (params) => new Date(params).toLocaleDateString()
     },
-    { field: 'artisticName', headerName: 'Artistic name', width: 130 }
+    {
+      field: 'endDate',
+      headerName: 'End Date',
+      width: 200,
+      valueFormatter: (params) => new Date(params).toLocaleDateString()
+    }
   ]
-  return { columns, artists, id, isNew }
+  return { columns, exhibitions, id, isNew }
 }
