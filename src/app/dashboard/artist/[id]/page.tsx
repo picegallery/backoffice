@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import ArtistForm from '@/components/Artist/Form'
+import ArtistForm from '@/components/Pages/Artist/Form'
 
 const DashboardArtistFormPage: FC = () => {
   return <ArtistForm />

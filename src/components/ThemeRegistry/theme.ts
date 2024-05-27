@@ -37,7 +37,7 @@ const theme = createTheme({
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: blueGrey[200],
+          backgroundColor: grey[200],
           spacing: 4,
           sizes: {
             medium: 16,

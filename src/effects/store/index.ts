@@ -3,7 +3,7 @@ import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux'
 import { persistReducer } from 'redux-persist'
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
 import { authReducer } from '@/effects/store/slices/authSlice'
-import { commonReducer } from './slices'
+import { artistReducer, commonReducer, exhibitionReducer } from './slices'
 
 const createNoopStorage = () => {
   return {
@@ -29,7 +29,9 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  common: commonReducer
+  common: commonReducer,
+  artist: artistReducer,
+  exhibition: exhibitionReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
