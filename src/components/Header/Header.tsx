@@ -1,6 +1,5 @@
 'use client'
 import { FC, Fragment } from 'react'
-import Link from 'next/link'
 import { styled } from '@mui/material/styles'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import Container from '@mui/material/Container'

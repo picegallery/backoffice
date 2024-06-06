@@ -3,5 +3,10 @@ import { User } from '../user'
 export type Artist = {
   id: string
   artisticName: string
-  user: User
+  email: string
+  user: {
+    firstName: string
+    lastName: string
+    email: string
+  }
 }

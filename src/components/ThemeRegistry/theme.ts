@@ -1,6 +1,6 @@
 import { Montserrat } from 'next/font/google'
 import { createTheme } from '@mui/material/styles'
-import { blueGrey } from '@mui/material/colors'
+import { grey } from '@mui/material/colors'
 
 const montserrat = Montserrat({
   weight: ['300', '400', '500', '700'],
