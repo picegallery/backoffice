@@ -11,9 +11,6 @@ import { URLS, menuList } from '@/constants'
 import Icon from '../Icon/Icon'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import MenuIcon from '@mui/icons-material/Menu'
-import HomeIcon from '@mui/icons-material/Home'
-import PeopleIcon from '@mui/icons-material/People'
 
 interface DrawerProps {
   open: boolean

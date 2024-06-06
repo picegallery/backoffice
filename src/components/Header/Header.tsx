@@ -60,10 +60,6 @@ const Header: FC<HeaderProps> = ({ open, handleDrawerOpen, logged }) => {
               </IconButton>
             )}
             <TitleStyled>{currentTitle}</TitleStyled>
-            <nav>
-              <Link href="/">Home</Link>
-              <Link href="/users">Users</Link>
-            </nav>
           </HeaderStyled>
         </Container>
       </AppBar>

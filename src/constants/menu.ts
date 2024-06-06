@@ -37,5 +37,10 @@ export const menuList = [
         icon: 'add'
       }
     ]
+  },
+  {
+    path: '/dashboard/users',
+    title: 'Users',
+    icon: 'people'
   }
 ]
