@@ -10,4 +10,5 @@ const Main: FC<MainProps> = ({ children }) => {
     </MainStyled>
   )
 }
+
 export default Main
