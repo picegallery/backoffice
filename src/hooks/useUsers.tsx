@@ -28,10 +28,10 @@ export const useUsers = () => {
       renderCell: (params) => <TableActions viewPath={`/dashboard/user/${params.row.id}`} onClickDelete={() => {}} />
     },
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'Primeiro Nome', width: 130 },
-    { field: 'lastName', headerName: 'Último Nome', width: 130 },
+    { field: 'firstName', headerName: 'First Name', width: 130 },
+    { field: 'lastName', headerName: 'Last Name', width: 130 },
     { field: 'email', headerName: 'Email', width: 200 },
-    { field: 'role', headerName: 'Função', width: 120 }
+    { field: 'role', headerName: 'Function', width: 120 }
   ]
 
   return { columns, users, id, isNew, loading, errorMessage }
