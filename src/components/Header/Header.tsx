@@ -1,6 +1,5 @@
 'use client'
 import { FC, Fragment } from 'react'
-import Link from 'next/link'
 import { styled } from '@mui/material/styles'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
@@ -60,10 +59,6 @@ const Header: FC<HeaderProps> = ({ open, handleDrawerOpen, logged }) => {
               </IconButton>
             )}
             <TitleStyled>{currentTitle}</TitleStyled>
-            <nav>
-              <Link href="/">Home</Link>
-              <Link href="/users">Users</Link>
-            </nav>
           </HeaderStyled>
         </Container>
       </AppBar>
