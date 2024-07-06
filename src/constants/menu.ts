@@ -39,8 +39,20 @@ export const menuList = [
     ]
   },
   {
-    path: '/dashboard/users',
+    path: '/dashboard/user',
     title: 'Users',
-    icon: 'people'
+    icon: 'people',
+    items: [
+      {
+        path: '/list',
+        title: 'List',
+        icon: 'list'
+      },
+      {
+        path: '/new',
+        title: 'New',
+        icon: 'add'
+      }
+    ]
   }
 ]

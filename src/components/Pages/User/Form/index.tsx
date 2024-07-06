@@ -22,7 +22,7 @@ const UserForm: FC<UserFormProps> = ({}) => {
 
   const onClickCancel = (viewMode: boolean) => {
     setViewMode(!viewMode)
-    isNew && push('/dashboard/users/list')
+    isNew && push('/dashboard/user/list')
   }
 
   const onClickEdit = (viewMode: boolean) => {

@@ -31,7 +31,7 @@ const InputText = <TFieldsType extends FieldValues>({
       render={({ field, fieldState: { error } }) => (
         <TextField
           helperText={error ? error.message : null}
-          size='small'
+          size='medium'
           disabled={field.disabled}
           error={!!error}
           type={type}

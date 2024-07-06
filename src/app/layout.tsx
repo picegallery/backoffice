@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
 import { Montserrat } from 'next/font/google'
 import { FC, ReactNode } from 'react'
@@ -22,7 +23,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
         <ReduxProvider>
           <AppRouterCacheProvider>
             <ThemeRegistry>
-              <Layout>{children}</Layout>
+                <Layout>{children}</Layout>
             </ThemeRegistry>
           </AppRouterCacheProvider>
         </ReduxProvider>

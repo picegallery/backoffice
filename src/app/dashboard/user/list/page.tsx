@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import UserList from '@/components/Pages/Users/List'
+import UserList from '@/components/Pages/User/List'
 
 const DashboardUserListPage: FC = () => {
   return <UserList />

@@ -4,6 +4,7 @@ import { useAppSelector } from '@/effects/store'
 import { setCurrentTitle } from '@/effects/store/slices'
 import { countries } from '@/mocks/data/countries'
 import { genders } from '@/mocks/data/genders'
+import { modes } from '@/mocks/data/modes'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -22,5 +23,5 @@ export const useCommon = ({ title = '' }: CommonProps = {}) => {
     return { label: `${en_short_name} - ${nationality}`, value: alpha_3_code }
   })
 
-  return { currentTitle, nationalities, genders }
+  return { currentTitle, nationalities, genders, modes }
 }

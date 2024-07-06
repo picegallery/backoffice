@@ -8,6 +8,7 @@ import { useArtist, useCommon } from '@/hooks'
 import Tabs, { TabItem } from '@/components/Tabs/Tabs'
 import FormToolbar from '@/components/FormToolbar/FormToolbar'
 import { useRouter } from 'next/navigation'
+import ExhibitionDetailsSection from '../Section/Details'
 
 type ExhibitionFormProps = {}
 const ExhibitionForm: FC<ExhibitionFormProps> = ({}) => {
@@ -18,11 +19,16 @@ const ExhibitionForm: FC<ExhibitionFormProps> = ({}) => {
 
   const [viewMode, setViewMode] = useState(!isNew)
 
-  const tabsForm: TabItem[] = []
+  const tabsForm: TabItem[] = [
+    {
+      label: 'Details',
+      content: <ExhibitionDetailsSection viewMode={viewMode} />
+    }
+  ]
 
   const onClickCancel = (viewMode: boolean) => {
     setViewMode(!viewMode)
-    isNew && push('/dashboard/artist/list')
+    isNew && push('/dashboard/exhibition/list')
   }
 
   const onClickEdit = (viewMode: boolean) => {
@@ -30,7 +36,7 @@ const ExhibitionForm: FC<ExhibitionFormProps> = ({}) => {
   }
 
   return (
-    <div data-testid='dashboard-artist-form'>
+    <div data-testid='dashboard-exhibition-form'>
       <form onSubmit={handleSubmit((data) => console.log('data', data))}>
         <Card>
           <Grid container>
