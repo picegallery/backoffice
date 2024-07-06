@@ -1,3 +1,4 @@
+import React, { FC } from 'react'
 import SignInPage from '@/components/Pages/SignIn/SignIn'
 import Head from 'next/head'
 

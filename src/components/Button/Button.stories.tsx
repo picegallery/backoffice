@@ -24,14 +24,3 @@ export const Default: Story = {
     expect(canvas.getByRole('button')).toBeDefined()
   }
 }
-
-const styledMeta: Meta<typeof StyledButton> = {
-  title: 'StyledButton',
-  component: StyledButton,
-  argTypes: {
-    children: { type: 'string' },
-  },
-  args: {
-    children: 'Styled Button',
-  },
-}

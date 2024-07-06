@@ -57,7 +57,7 @@ const DrawerHeaderStyled = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
-  }))
+}))
 
 const DrawerStyled = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
   width: drawerWidth,
@@ -180,7 +180,7 @@ const Drawer: FC<DrawerProps> = ({ open, onClose }) => {
                   openItem: false,
                   icon
                 })}
-              </ListItem>
+        </ListItem>
             )
           }
         })}
