@@ -6,7 +6,7 @@ const montserrat = Montserrat({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
   display: 'swap'
-})
+});
 
 const brandColors = {
   primary: '#006E7A',
@@ -37,7 +37,7 @@ const theme = createTheme({
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: grey[100],
+          backgroundColor: grey[200],
           spacing: 4,
           sizes: {
             medium: 16,

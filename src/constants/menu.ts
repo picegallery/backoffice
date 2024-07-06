@@ -38,9 +38,9 @@ export const menuList = [
       }
     ]
   },
-{
-  path: '/dashboard/users',
-  title: 'Users',
-  icon: 'people' 
-}
+  {
+    path: '/dashboard/users',
+    title: 'Users',
+    icon: 'people'
+  }
 ]

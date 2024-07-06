@@ -1,6 +1,7 @@
 //import { signOutSuccess } from "@reducers";
 import axios, { AxiosError } from 'axios'
-import { ConfigType, API } from '@/types/generics/api'
+import type { API } from '@/types/generics/api'
+import type { ConfigType } from '@/types'
 import { configAPI } from './axiosInstance'
 import { store } from '../store'
 
