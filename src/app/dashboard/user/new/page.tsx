@@ -1,8 +1,8 @@
-import UserEditForm from '@/components/Pages/User/EditForm'
+import UserNewForm from '@/components/Pages/User/NewForm'
 import { FC } from 'react'
 
 const DashboardUsers: FC = () => {
-    return <UserEditForm />
+    return <UserNewForm />
 }
 
 export default DashboardUsers

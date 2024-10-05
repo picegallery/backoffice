@@ -1,56 +1,75 @@
-//import { signOutSuccess } from "@reducers";
-import axios, { AxiosError } from 'axios'
+import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import type { API } from '@/types/generics/api'
 import type { ConfigType } from '@/types'
 import { configAPI } from './axiosInstance'
 import { store } from '../store'
+//import { signOutSuccess } from '@reducers'; // Uncomment if you have the sign-out reducer
 
+// Utility to get the correct Axios instance based on config
 const getConfig = (config: ConfigType) => {
   switch (config) {
     default:
       return configAPI
   }
 }
-// s = success E = error D = body
+
+// Generic API Function - S = success, E = error, D = body
 async function API<S = any, E = any, D = any>(params: API<S, E, D>): Promise<S> {
   try {
+    // Retrieve the authorization token from the Redux store
     const token = store.getState().auth.token
     const headers = {
       ...params.headers,
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     }
-    // this line will be remove when we have the all api's working, and only configAPI will be use
+
+    // Select the appropriate Axios instance based on the config
     const useConfig = getConfig(params.config || 'register')
-    const config = {
+
+    // Prepare the Axios configuration
+    const config: AxiosRequestConfig = {
       url: params.url,
       method: params.method,
       data: params.data,
       headers: headers,
-      files: params.files
-    }
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const response = await useConfig(config)
-    return response.data
-  } catch (error: AxiosError | unknown) {
-    // @ts-ignore
-    if (error && error.response && error.response.status === 401) {
-      //store.dispatch(signOutSuccess())
+      files: params.files, // You may need to adjust this based on your backend API
     }
 
+    // Make the API call and return the response data
+    const response = await useConfig(config)
+    return response.data
+
+  } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
-      // If it is, you can access AxiosError specific properties
-      if (error.response) {
-        // AxiosError contains a response property with more details
-        throw new Error(`Error fetching user data: ${error.response.status} - ${error.response.statusText}`)
-      } else if (error.request) {
-        // AxiosError contains a request property with more details
-        throw new Error('No response received from server')
-      } else {
-        throw new Error(`Error fetching user data: ${error.message}`)
+      // Axios-specific error handling
+      const axiosError = error as AxiosError<E>
+
+      // Check for 401 Unauthorized and handle global sign-out
+      if (axiosError.response?.status === 401) {
+        // Dispatch a sign-out action if needed
+        // store.dispatch(signOutSuccess()) // Uncomment if you have a sign-out action
+        throw new Error('Unauthorized access - please log in again')
       }
+
+      // Check for specific status codes (e.g., 409 Conflict)
+      if (axiosError.response) {
+        const errorMessage = axiosError.response.data
+        // @ts-ignore
+          ? `${axiosError.response.data.message || 'Internal Server Error'}`
+          : `Server responded with status ${axiosError.response.status}`
+        throw new Error(errorMessage)
+      }
+
+      // No response received
+      if (axiosError.request) {
+        throw new Error('No response received from the server')
+      }
+
+      // Something else happened during the request
+      throw new Error(`Request Error: ${axiosError.message}`)
     } else {
-      // If it's not an AxiosError, you can handle it generically
-      throw new Error(`Error fetching user data: ${String(error)}`)
+      // Handle unknown errors
+      throw new Error(`Unexpected error: ${String(error)}`)
     }
   }
 }

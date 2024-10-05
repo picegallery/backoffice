@@ -37,16 +37,16 @@ const FormToolbar: FC<FormToolbarProps> = ({
       <Grid container gap={1}>
         <Grid item xs={12} display={'flex'} justifyContent={'flex-end'}>
           {showEdit && isViewMode && (
-            <Button type='submit' onClick={handleOnClickEdit}>
+            <Button type='button' onClick={handleOnClickEdit}>
               Edit
             </Button>
           )}
           {showCancel && !isViewMode && (
-            <Button type='submit' onClick={handleOnClickCancel}>
+            <Button type='button' onClick={handleOnClickCancel}>
               Cancel
             </Button>
           )}
-          {showSave && !isViewMode && <Button type='button'>Save</Button>}
+          {showSave && !isViewMode && <Button type='submit'>Save</Button>}
         </Grid>
       </Grid>
     </FormToolbarStyled>

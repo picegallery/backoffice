@@ -1,12 +1,12 @@
 'use client'
-import { set, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { SignInFormType } from '@/types'
 
 export const useSignIn = () => {
   const schema = yup.object().shape({
-    email: yup.string().required('Name is a required field'),
+    email: yup.string().required('E-mail is a required field'),
     password: yup
       .string()
       .required('Password is a required field')
@@ -21,8 +21,7 @@ export const useSignIn = () => {
     control,
     handleSubmit,
     setError,
-    formState: { errors },
-    watch
+    formState: { errors }
   } = useForm<SignInFormType>({
     defaultValues: {
       email: 'test12346@example.com',
@@ -32,5 +31,5 @@ export const useSignIn = () => {
     resolver: yupResolver(schema)
   })
 
-  return { control, handleSubmit, setError, errors, watch }
+  return { control, handleSubmit, setError, errors }
 }

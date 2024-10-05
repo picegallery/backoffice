@@ -6,6 +6,8 @@ import { FC, ReactNode } from 'react'
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry'
 import Layout from '@/components/Layout/Layout'
 import dynamic from 'next/dynamic'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -24,6 +26,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
           <AppRouterCacheProvider>
             <ThemeRegistry>
                 <Layout>{children}</Layout>
+                <ToastContainer />
             </ThemeRegistry>
           </AppRouterCacheProvider>
         </ReduxProvider>

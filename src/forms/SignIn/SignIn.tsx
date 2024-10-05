@@ -12,7 +12,7 @@ import { setAuthErrorMessage } from '@/effects/store/slices'
 const SignInForm: FC = () => {
   const dispatch = useAppDispatch()
   const { errorMessage, loading } = useAuth()
-  const { control, handleSubmit, watch } = useSignIn()
+  const { control, handleSubmit } = useSignIn()
   const onSubmit: SubmitHandler<SignInFormType> = (data) => {
     dispatch(postSignInAction(data))
   }

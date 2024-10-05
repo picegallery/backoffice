@@ -7,6 +7,8 @@ import { genders } from '@/mocks/data/genders'
 import { modes } from '@/mocks/data/modes'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify';
+
 
 type CommonProps = {
   title?: string
@@ -23,5 +25,5 @@ export const useCommon = ({ title = '' }: CommonProps = {}) => {
     return { label: `${en_short_name} - ${nationality}`, value: alpha_3_code }
   })
 
-  return { currentTitle, nationalities, genders, modes }
+  return { currentTitle, nationalities, genders, modes, toast }
 }

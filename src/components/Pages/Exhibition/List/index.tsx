@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react'
 import DataTable from '@/components/DataTable/DataTable'
 import { useExhibition, useCommon } from '@/hooks'
 import Card from '@/components/Card/Card'
-import { getExhibitions } from '@/effects/actions'
+import { getExhibitionsAction } from '@/effects/actions'
 import { useAppDispatch } from '@/effects/store'
 
 const ExhibitionList: FC = () => {
@@ -12,7 +12,7 @@ const ExhibitionList: FC = () => {
   const { columns, exhibitions } = useExhibition()
 
   useEffect(() => {
-    dispatch(getExhibitions())
+    dispatch(getExhibitionsAction())
   }, [dispatch])
 
   return (

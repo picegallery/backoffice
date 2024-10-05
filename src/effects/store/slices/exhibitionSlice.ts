@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ExhibitionState } from '@/types'
-import { getExhibitions } from '@/effects/actions'
+import { getExhibitionsAction } from '@/effects/actions'
 
 const initialState: ExhibitionState = {
   errorMessage: null,
@@ -13,14 +13,14 @@ export const exhibitionSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getExhibitions.pending, (state) => {
+    builder.addCase(getExhibitionsAction.pending, (state) => {
       state.loading = true
     })
-    builder.addCase(getExhibitions.fulfilled, (state, action) => {
+    builder.addCase(getExhibitionsAction.fulfilled, (state, action) => {
       state.loading = false
       state.list = action.payload
     })
-    builder.addCase(getExhibitions.rejected, (state, action) => {
+    builder.addCase(getExhibitionsAction.rejected, (state, action) => {
       state.loading = false
       state.errorMessage = action.error.message ?? null
     })

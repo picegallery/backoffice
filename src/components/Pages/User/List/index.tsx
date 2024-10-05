@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react'
 import DataTable from '@/components/DataTable/DataTable'
 import { useUsers, useCommon } from '@/hooks'
 import Card from '@/components/Card/Card'
-import { getUsers } from '@/effects/actions'
+import { getUsersAction } from '@/effects/actions'
 import { useAppDispatch } from '@/effects/store'
 
 const UserList: FC = () => {
@@ -12,7 +12,7 @@ const UserList: FC = () => {
   const { columns, users } = useUsers()
 
   useEffect(() => {
-    dispatch(getUsers())
+    dispatch(getUsersAction())
   }, [dispatch])
 
   return (

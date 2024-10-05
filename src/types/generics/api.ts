@@ -1,6 +1,8 @@
 import { Method, AxiosError } from 'axios'
 
-export type DefaultError = AxiosError
+export type DefaultError = AxiosError & {
+  message?: string;
+};
 export type ConfigType = 'register' | 'analytics'
 export interface API<S, E, D = any> {
   url: string

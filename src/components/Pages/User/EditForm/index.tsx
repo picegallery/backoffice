@@ -1,28 +1,44 @@
 'use client'
-import { FC, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { FC, useEffect, useState } from 'react'
 import { Grid } from '@mui/material'
 import Card from '@/components/Card/Card'
 import { useUsers, useCommon } from '@/hooks'
 import Tabs, { TabItem } from '@/components/Tabs/Tabs'
 import FormToolbar from '@/components/FormToolbar/FormToolbar'
 import { useRouter } from 'next/navigation'
+import UserInfoSection from '../Section/Info'
+import { getUserAction } from '@/effects/actions'
+import { useAppDispatch } from '@/effects/store'
 
-type UserFormProps = {}
+type UserEditFormPropsProps = {}
 
-const UserForm: FC<UserFormProps> = ({}) => {
+const UserEditFormProps: FC<UserEditFormPropsProps> = ({}) => {
   useCommon({ title: 'User' })
-  const { isNew } = useUsers()
-  const { handleSubmit } = useForm()
-  const { push } = useRouter()
+  const dispatch = useAppDispatch()
+  const { handleSubmit, control, onSubmit, id, reset, form } = useUsers()
+  const [viewMode, setViewMode] = useState(true)
 
-  const [viewMode, setViewMode] = useState(!isNew)
+  const resetToInitialValues = () => {
+    reset({...form, userType: [form.userType]})
+  }
+  useEffect(() => {
+    resetToInitialValues()
+  }, [])
 
-  const tabsForm: TabItem[] = []
+  useEffect(() => {
+      dispatch(getUserAction(id as string))
+  }, [dispatch, id])
+
+  const tabsForm: TabItem[] = [
+    {
+      label: 'Info',
+      content: <UserInfoSection viewMode={viewMode} control={control} />
+    },
+  ]
 
   const onClickCancel = (viewMode: boolean) => {
     setViewMode(!viewMode)
-    isNew && push('/dashboard/user/list')
+    resetToInitialValues();
   }
 
   const onClickEdit = (viewMode: boolean) => {
@@ -31,14 +47,14 @@ const UserForm: FC<UserFormProps> = ({}) => {
 
   return (
     <div data-testid='dashboard-user-form'>
-      <form onSubmit={handleSubmit((data) => console.log('data', data))}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Card>
           <Grid container>
             <FormToolbar
               showSave
               showCancel
               showEdit
-              isNew={isNew}
+              isNew={false}
               onClickCancel={(viewMode: boolean) => onClickCancel(viewMode)}
               onClickEdit={(viewMode: boolean) => onClickEdit(viewMode)}
             />
@@ -52,4 +68,4 @@ const UserForm: FC<UserFormProps> = ({}) => {
   )
 }
 
-export default UserForm
+export default UserEditFormProps

@@ -5,7 +5,7 @@ export interface DefaultValuesState<T> {
   errorMessage: Nullable<string>
   successMessage?: Nullable<string>
   loading: boolean
-  form?: T
+  form: T
   list: T[]
   size?: number
   page?: number
@@ -13,4 +13,5 @@ export interface DefaultValuesState<T> {
   totalElements?: number
   search?: string
   deleted?: Nullable<boolean>
+  resetForm: Nullable<boolean>
 }
