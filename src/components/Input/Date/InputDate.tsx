@@ -1,9 +1,9 @@
-import { HTMLInputTypeAttribute, JSX } from 'react'
+import { HTMLInputTypeAttribute } from 'react'
 import { Control, Controller, FieldError, FieldValues, Path, RegisterOptions } from 'react-hook-form'
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { FilledTextFieldProps, OutlinedTextFieldProps, StandardTextFieldProps, TextField, TextFieldVariants } from '@mui/material';
+import dayjs, { Dayjs } from 'dayjs'
 
 interface FormInputControllerProps<TFieldsType extends FieldValues> {
   name: Path<TFieldsType>
@@ -35,12 +35,17 @@ const InputDate = <TFieldsType extends FieldValues>({
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
             {...field}
+            value={field.value ? dayjs(field.value) : null} // Convert ISO string to dayjs object
+            onChange={(newValue) => {
+              // Ensure the value is stored as an ISO string in the form state
+              field.onChange(newValue ? newValue.toISOString() : null)
+            }}
             slotProps={{
               textField: {
                 fullWidth: true,
                 error: !!error,
                 helperText: error ? error.message : null,
-              }
+              },
             }}
             label={label}
             disabled={disabled}

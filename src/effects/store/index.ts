@@ -5,41 +5,46 @@ import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
 import { authReducer } from '@/effects/store/slices/authSlice'
 import { artistReducer, commonReducer, exhibitionReducer, usersReducer } from './slices'
 
-const createNoopStorage = () => {
-  return {
-    getItem() {
-      return Promise.resolve(null)
-    },
-    setItem(_key: string, value: number) {
-      return Promise.resolve(value)
-    },
-    removeItem() {
-      return Promise.resolve()
-    }
+/**
+ * Handle SSR environment. If window is undefined, use a noop storage.
+ */
+const createNoopStorage = () => ({
+  getItem() {
+    return Promise.resolve(null)
+  },
+  setItem(_key: string, value: string) {
+    return Promise.resolve(value)
+  },
+  removeItem() {
+    return Promise.resolve()
   }
-}
+})
 
 const storage = typeof window !== 'undefined' ? createWebStorage('local') : createNoopStorage()
 
-const persistConfig = {
-  key: 'root',
-  storage: storage,
-  middleware: (getDefaultMiddleware: any) => getDefaultMiddleware({ serializableCheck: false })
+/**
+ * Persist configuration for the `auth` slice only.
+ */
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['auth'], // Only persist the `auth` slice
 }
 
+/**
+ * Combine reducers, with `auth` using `persistReducer`.
+ */
 const rootReducer = combineReducers({
-  auth: authReducer,
-  common: commonReducer,
+  auth: persistReducer(authPersistConfig, authReducer), // Persist only the auth reducer
+  common: commonReducer, // Do not persist other slices
   artist: artistReducer,
   exhibition: exhibitionReducer,
-  user: usersReducer
+  user: usersReducer,
 })
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
-
 export const store = configureStore({
-  reducer: persistedReducer,
-  devTools: process.env.NODE_ENV !== 'production'
+  reducer: rootReducer, // Use the root reducer
+  devTools: process.env.NODE_ENV !== 'production',
 })
 
 export type RootState = ReturnType<typeof store.getState>

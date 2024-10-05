@@ -1,8 +1,8 @@
 import { FC } from 'react'
-import ExhibitionForm from '@/components/Pages/Exhibition/Form'
+import ExhibitionEditForm from '@/components/Pages/Exhibition/EditForm'
 
-const DashboardExhibitionFormPage: FC = () => {
-  return <ExhibitionForm />
+const DashboardExhibitionEditFormPage: FC = () => {
+  return <ExhibitionEditForm />
 }
 
-export default DashboardExhibitionFormPage
+export default DashboardExhibitionEditFormPage

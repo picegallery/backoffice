@@ -3,10 +3,11 @@ import { FC, ReactNode, useState } from 'react'
 import Footer from '../Footer/Footer'
 import Main from '../Main/Main'
 import { useAuth } from '@/hooks'
-import Header from '../Header/Header'
 import Drawer from '../Drawer/Drawer'
 import { RootStyled } from './Layout.styled'
 import dynamic from 'next/dynamic'
+import { useLoader } from '@/hooks/useLoader'
+import Loader from '../Loader/Loader'
 
 type LayoutProps = {
   children: ReactNode
@@ -17,6 +18,7 @@ const DynamicHeader = dynamic(() => import('../Header/Header'), {
 })
 
 const Layout: FC<LayoutProps> = ({ children }) => {
+  const { isLoading } = useLoader();
   const { logged } = useAuth()
   const [open, setOpen] = useState(false)
 
@@ -35,12 +37,12 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       <Main>{children}</Main>
       <Footer />
     </RootStyled>
+    
   )
 
   const renderLogoutLayout = <RootStyled data-testid='layout-component'>{children}</RootStyled>
 
-  console.log('logged', logged)
-  return <>{logged ? renderLoggedLayout : renderLogoutLayout}</>
+  return <>{logged ? renderLoggedLayout : renderLogoutLayout}{isLoading && <Loader />}</>
 }
 
 export default Layout

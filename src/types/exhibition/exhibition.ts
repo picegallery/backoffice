@@ -13,4 +13,23 @@ export type Exhibition = {
   description: string
   startDate: string
   endDate: string
+  bannerUrl: string
+}
+
+export interface ExhibitionFormValues {
+  exhibitionType: string[]
+  title: string
+  description: string
+  startDate: string
+  endDate: string
+  bannerUrl?: string
+}
+
+export interface ExhibitionFormValuesToApi {
+  exhibitionType: string;
+  title: string
+  description: string
+  startDate: string
+  endDate: string
+  bannerUrl: string
 }

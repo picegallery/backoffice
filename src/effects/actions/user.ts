@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { DefaultError, User, UserFormValues, UserFormValuesToApi } from '@/types'
+import { DefaultError, User, UserFormValuesToApi } from '@/types'
 import { fetchAllUsers, fetchUserById, postUser } from '@/effects/api'
 
 export const getUsersAction = createAsyncThunk<User[], void, { rejectValue: DefaultError }>(

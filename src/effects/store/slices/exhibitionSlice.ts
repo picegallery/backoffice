@@ -1,17 +1,36 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { ExhibitionState } from '@/types'
-import { getExhibitionsAction } from '@/effects/actions'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Exhibition, ExhibitionState, ExhibitionType } from '@/types'
+import { getExhibitionAction, getExhibitionsAction, postExhibitionAction } from '@/effects/actions'
+import dayjs from 'dayjs'
 
-const initialState: ExhibitionState = {
+const nowDate = dayjs().format('DD/MM/YYYY')
+export const exhibitionInitialState: ExhibitionState = {
   errorMessage: null,
   list: [],
-  loading: false
+  loading: false,
+  form: {
+    id: "new", description: "", title: "", exhibitionType: ExhibitionType.HYBRID, startDate: nowDate, endDate: nowDate,
+    bannerUrl: ''
+  },
+  resetForm: false
 }
 
 export const exhibitionSlice = createSlice({
   name: 'exhibition',
-  initialState,
-  reducers: {},
+  initialState: exhibitionInitialState,
+  reducers: { 
+    setExhibitionErrorMessage: (state, action: PayloadAction<string | null>) => {
+    state.errorMessage = action.payload
+  },
+  setExhibitionSuccessMessage: (state, action: PayloadAction<string | null>) => {
+    state.successMessage = action.payload
+  },
+  resetExhibitionForm: (state) => {
+    state.form = exhibitionInitialState.form
+  },
+  setExhibitionResetForm: (state, action: PayloadAction<boolean | null>) => {
+    state.resetForm = action.payload
+  },},
   extraReducers: (builder) => {
     builder.addCase(getExhibitionsAction.pending, (state) => {
       state.loading = true
@@ -24,8 +43,34 @@ export const exhibitionSlice = createSlice({
       state.loading = false
       state.errorMessage = action.error.message ?? null
     })
+    .addCase(getExhibitionAction.pending, (state) => {
+      state.loading = true
+      state.errorMessage = null
+      state.resetForm = true
+    })
+    .addCase(getExhibitionAction.fulfilled, (state, action: PayloadAction<Exhibition>) => {
+      state.form = action.payload
+      state.loading = false
+    })
+    .addCase(getExhibitionAction.rejected, (state, action) => {
+      state.loading = false
+      state.errorMessage = action.error.message || 'Failed to load exhibition'
+    })
+    .addCase(postExhibitionAction.pending, (state) => {
+      state.loading = true
+      state.errorMessage = null
+    })
+    .addCase(postExhibitionAction.fulfilled, (state, action) => {
+      state.loading = false
+      state.successMessage = 'exhibition saved'
+      state.form = action.payload
+    })
+    .addCase(postExhibitionAction.rejected, (state, action) => {
+      state.loading = false        
+      state.errorMessage = action.payload?.message  || 'Failed to save user'
+    })
   }
 })
 
-export const {} = exhibitionSlice.actions
+export const {setExhibitionErrorMessage, setExhibitionResetForm, setExhibitionSuccessMessage, resetExhibitionForm} = exhibitionSlice.actions
 export const exhibitionReducer = exhibitionSlice.reducer

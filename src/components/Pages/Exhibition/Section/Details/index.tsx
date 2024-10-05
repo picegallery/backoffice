@@ -5,17 +5,17 @@ import InputSelect from '@/components/Input/Select/InputSelect'
 import InputText from '@/components/Input/Text/InputText'
 import InputTextarea from '@/components/Input/Textarea/InputTextarea'
 import { useCommon } from '@/hooks'
+import { ExhibitionFormValues } from '@/types'
 import { Grid } from '@mui/material'
 import { FC } from 'react'
-import { useForm } from 'react-hook-form'
+import { Control, useForm } from 'react-hook-form'
 
 type ExhibitionDetailsSectionProps = {
-  viewMode: boolean
+  viewMode: boolean;
+  control: Control<ExhibitionFormValues>
 }
-const ExhibitionDetailsSection: FC<ExhibitionDetailsSectionProps> = ({ viewMode }) => {
-  const { control } = useForm()
+const ExhibitionDetailsSection: FC<ExhibitionDetailsSectionProps> = ({ viewMode, control }) => {
   const { modes } = useCommon()
-
   return (
     <div data-testid='dashboard-artist-profile-section'>
       <Grid container spacing={1} rowSpacing={2}>
@@ -23,7 +23,7 @@ const ExhibitionDetailsSection: FC<ExhibitionDetailsSectionProps> = ({ viewMode 
           <InputText name='title' control={control} label='Title' disabled={viewMode} />
         </Grid>
         <Grid item xs={12} md={6}>
-          <InputSelect name='mode' control={control} label='Mode' items={modes} disabled={viewMode} />
+          <InputSelect name='exhibitionType' control={control} label='Mode' items={modes} disabled={viewMode} />
         </Grid>
         <Grid item xs={12} md={6}>
           <InputDate name='startDate' control={control} label='Start Date' disabled={viewMode} />
@@ -35,7 +35,7 @@ const ExhibitionDetailsSection: FC<ExhibitionDetailsSectionProps> = ({ viewMode 
           <InputTextarea name='description' control={control} label='Description' disabled={viewMode} />
         </Grid>
         <Grid item xs={12} md={4}>
-          <InputImage name='photo' control={control} disabled={viewMode} />
+          <InputImage name='bannerUrl' control={control} disabled={viewMode} />
         </Grid>
       </Grid>
     </div>
