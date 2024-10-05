@@ -1,8 +1,8 @@
 import { FC } from 'react'
-import ArtistForm from '@/components/Pages/Artist/Form'
+import ArtistEditForm from '@/components/Pages/Artist/EditForm'
 
-const DashboardArtistFormPage: FC = () => {
-  return <ArtistForm />
+const DashboardArtistEditFormPage: FC = () => {
+  return <ArtistEditForm />
 }
 
-export default DashboardArtistFormPage
+export default DashboardArtistEditFormPage

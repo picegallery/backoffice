@@ -12,8 +12,8 @@ import ArtistExhibitionSection from '../Section/Exhibitions'
 import ArtistProfileSection from '../Section/Profile'
 import { useRouter } from 'next/navigation'
 
-type ArtistFormProps = {}
-const ArtistForm: FC<ArtistFormProps> = ({}) => {
+type ArtistNewFormProps = {}
+const ArtistNewForm: FC<ArtistNewFormProps> = ({}) => {
   const { isNew } = useArtist()
   const { handleSubmit } = useForm()
   const { push } = useRouter()
@@ -69,4 +69,4 @@ const ArtistForm: FC<ArtistFormProps> = ({}) => {
   )
 }
 
-export default ArtistForm
+export default ArtistNewForm
