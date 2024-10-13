@@ -8,6 +8,7 @@ import { RootStyled } from './Layout.styled'
 import dynamic from 'next/dynamic'
 import { useLoader } from '@/hooks/useLoader'
 import Loader from '../Loader/Loader'
+import { Role } from '@/types'
 
 type LayoutProps = {
   children: ReactNode
@@ -18,8 +19,8 @@ const DynamicHeader = dynamic(() => import('../Header/Header'), {
 })
 
 const Layout: FC<LayoutProps> = ({ children }) => {
-  const { isLoading } = useLoader();
-  const { logged } = useAuth()
+  const { isLoading } = useLoader()
+  const { logged, role } = useAuth()
   const [open, setOpen] = useState(false)
 
   const handleDrawerOpen = () => {
@@ -37,12 +38,34 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       <Main>{children}</Main>
       <Footer />
     </RootStyled>
-    
+  )
+
+  const renderLoggedArtistLayout = (
+    <RootStyled data-testid='layout-artist-component'>
+      {/* <DynamicHeader open={open} handleDrawerOpen={handleDrawerOpen} logged={logged} /> */}
+      <Drawer open={open} onClose={handleDrawerClose} />
+      <Main>{children}</Main>
+      <Footer />
+    </RootStyled>
   )
 
   const renderLogoutLayout = <RootStyled data-testid='layout-component'>{children}</RootStyled>
 
-  return <>{logged ? renderLoggedLayout : renderLogoutLayout}{isLoading && <Loader />}</>
+  const renderLayoutByRole = () => {
+    switch (role) {
+      case Role.ARTIST:
+        return renderLoggedArtistLayout
+      default:
+        return renderLoggedLayout
+    }
+  }
+
+  return (
+    <>
+      {logged ? renderLayoutByRole() : renderLogoutLayout}
+      {isLoading && <Loader />}
+    </>
+  )
 }
 
 export default Layout

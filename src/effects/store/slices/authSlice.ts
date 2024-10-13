@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AuthState } from '@/types'
+import { AuthState, Role } from '@/types'
 import { postSignInAction } from '@/effects/actions'
 import { handleErrorMessages } from '@/utils/handleErrorMessages'
 
 const initialState: AuthState = {
   logged: true,
   errorMessage: null,
-  list: [],
   loading: false,
   refreshToken: null,
-  token: null
+  token: null,
+  role: Role.ARTIST
 }
 
 export const authSlice = createSlice({

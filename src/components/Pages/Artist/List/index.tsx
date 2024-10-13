@@ -4,7 +4,7 @@ import DataTable from '@/components/DataTable/DataTable'
 import { useArtist, useCommon } from '@/hooks'
 import Card from '@/components/Card/Card'
 import { useAppDispatch } from '@/effects/store'
-import { getArtists } from '@/effects/actions'
+import { getArtistsAction } from '@/effects/actions'
 
 const ArtistList: FC = () => {
   const dispatch = useAppDispatch()
@@ -12,7 +12,7 @@ const ArtistList: FC = () => {
   const { columns, artists } = useArtist()
 
   useEffect(() => {
-    dispatch(getArtists())
+    dispatch(getArtistsAction())
   }, [dispatch])
 
   return (
